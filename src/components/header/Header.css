@@ -1,0 +1,12 @@
+.app-header {
+    background-color: #B72B2B;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px !important;
+}
+
+.app-header__logo {
+    background: #999;
+    height: 25px;
+    width: 100px;
+}
