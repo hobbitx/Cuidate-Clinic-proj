@@ -7,12 +7,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { Link } from 'react-router-dom'
 import "./Header.css";
 
 
 class Header extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       logged: false,
       cadastramento: false,
@@ -22,6 +23,7 @@ class Header extends React.Component {
     this.menuListagem = this.menuListagem.bind(this);
     this.closeCadastramento = this.closeCadastramento.bind(this);
     this.closeListagem = this.closeListagem.bind(this);
+    this.home = this.home.bind(this);
   }
   menuCadastramento = (event) => {
     this.setState({
@@ -45,6 +47,9 @@ class Header extends React.Component {
       listagem: false,
     });
   };
+  home = () =>{
+    console.log( this.props.history)
+  }
   render() {
     return (
       <React.Fragment>
@@ -56,16 +61,20 @@ class Header extends React.Component {
           }}
         >
           <Toolbar className="app-header">
+            
             <IconButton edge="start" color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Button
+            <Link className="app-menu__link" to="/"><Button
               aria-controls="simple-menu"
               aria-haspopup="true"
               className="app-header_text"
+              onClick={this.home}
             >
               Home
             </Button>
+            </Link>
+            <Link className="app-menu__link" to="/Galeria">
             <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
@@ -73,6 +82,7 @@ class Header extends React.Component {
             >
               Galeria
             </Button>
+            </Link>
             <Button
               aria-controls="simple-menu"
               aria-haspopup="true"

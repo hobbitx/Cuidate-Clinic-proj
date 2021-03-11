@@ -1,5 +1,6 @@
 .app-container {
     font-family: sans-serif;
+    height: calc(100vh);
     padding-top: 4rem;
     color: black;
 }
