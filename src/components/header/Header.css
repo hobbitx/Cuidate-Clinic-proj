@@ -10,3 +10,12 @@
     height: 25px;
     width: 100px;
 }
+.app-header_text {
+    margin-left: 5px;
+    color: white  !important;
+}
+.login {
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+}
