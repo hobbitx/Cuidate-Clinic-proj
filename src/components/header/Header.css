@@ -1,0 +1,27 @@
+.app-header {
+    background-color: #B72B2B;
+    display: flex;
+    padding-left: 15px !important;
+    align-items: flex-start;
+}
+
+.app-header__logo {
+    background: #999;
+    height: 25px;
+    width: 100px;
+}
+.app-header_text {
+    margin-left: 5px;
+    color: white  !important;
+}
+.login {
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+}
+.app-menu__link {
+    color: #595959;
+    font-family: sans-serif;
+    margin-right: 1rem;
+    text-decoration: none;
+}
