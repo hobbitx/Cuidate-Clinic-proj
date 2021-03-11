@@ -1,8 +1,8 @@
 .app-header {
     background-color: #B72B2B;
     display: flex;
-    justify-content: space-between;
-    padding: 2px !important;
+    padding-left: 15px !important;
+    align-items: flex-start;
 }
 
 .app-header__logo {

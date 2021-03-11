@@ -1,8 +1,12 @@
 import * as React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import './Footer.css';
+import IconButton from "@material-ui/core/IconButton";
+import { ReactComponent as FacebookIcon } from "../../imagens/facebook.svg";
+import { ReactComponent as GoogleIcon } from "../../imagens/google.svg";
+import { ReactComponent as WhatsAppIcon } from "../../imagens/whatsapp.svg";
+import { ReactComponent as InstagramIcon } from "../../imagens/instagram.svg";
+import "./Footer.css";
 
 class Footer extends React.Component {
   constructor() {
@@ -11,11 +15,20 @@ class Footer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <AppBar position="static" >
+        <AppBar position="static">
           <Toolbar className="app-footer">
-            <Typography variant="h6" className="teste">
-              Photos
-            </Typography>
+            <IconButton>
+              <FacebookIcon />
+            </IconButton>
+            <IconButton>
+              <GoogleIcon />
+            </IconButton>
+            <IconButton>
+              <WhatsAppIcon />
+            </IconButton>
+            <IconButton>
+              <InstagramIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </React.Fragment>
