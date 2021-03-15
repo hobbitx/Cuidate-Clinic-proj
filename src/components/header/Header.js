@@ -15,7 +15,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      logged: false,
+      logged: true,
       cadastramento: false,
       listagem: false,
     };
@@ -114,12 +114,14 @@ class Header extends React.Component {
                   keepMounted
                   onClose={this.closeCadastramento}
                 >
-                  <MenuItem onClick={this.closeCadastramento}>
+                 <Link className="app-menu__link" to="/addFuncionario"> <MenuItem onClick={this.closeCadastramento}>
                     Funcionários
                   </MenuItem>
-                  <MenuItem onClick={this.closeCadastramento}>
+                  </Link>
+                  <Link className="app-menu__link" to="/addPaciente"><MenuItem onClick={this.closeCadastramento}>
                     Pacientes
                   </MenuItem>
+                  </Link>
                 </Menu>
 
                 <Button

@@ -5,10 +5,11 @@ import Footer from "../components/footer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Conteudo from "../components/conteudo";
 import PropTypes from "prop-types";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Galeria from "../pages/Galeria";
 import Info from "../pages/SobreNos";
+import AddFuncionario from "./AddFuncionario";
+import AddPaciente from "./AddPaciente";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -49,6 +50,8 @@ class Home extends React.Component {
             <Switch>
               <Route exact path="/" component={Info} />
               <Route path="/galeria" component={Galeria} />
+              <Route path="/addFuncionario" component={AddFuncionario} />
+              <Route path="/addPaciente" component={AddPaciente} />
             </Switch>
           </Conteudo>
           <Footer />
