@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import "./Add.css";
 const style = {
-  margin: "15px",
+  margin: "10%",
 };
 
 class AddPaciente extends React.Component {
@@ -39,6 +39,7 @@ class AddPaciente extends React.Component {
       <React.Fragment>
         <div style={style}>
           <Grid container spacing={1}>
+          <Grid item xs={12}>Cadastramento de paciente</Grid>
             <Grid item xs={12}>
               <TextField
                 id="nome"

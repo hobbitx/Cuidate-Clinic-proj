@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 import "./Add.css";
 const style = {
-  "margin": "15px",
+  "margin": "10%",
 };
 
 class AddDoctor extends React.Component {
@@ -45,6 +45,7 @@ class AddDoctor extends React.Component {
         <div style={style}>
         
           <Grid container spacing={1}>
+          <Grid item xs={12}>Cadastramento de funcionario</Grid>
             <Grid item xs={12} style={{ color: "#505050" }}>
               <Switch id="isDoctor" onChange={this.checkBox} name="isDoctor" />
               Médico
