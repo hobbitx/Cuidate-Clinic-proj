@@ -139,7 +139,7 @@ class Header extends React.Component {
                   keepMounted
                   onClose={this.closeListagem}
                 >
-                  <MenuItem onClick={this.closeListagem}>Funcionários</MenuItem>
+                   <Link className="app-menu__link" to="/listFuncionarios"><MenuItem onClick={this.closeListagem}>Funcionários</MenuItem></Link>
                   <MenuItem onClick={this.closeListagem}>Pacientes</MenuItem>
                   <MenuItem onClick={this.closeListagem}>Endereços</MenuItem>
                   <MenuItem onClick={this.closeListagem}>Agendamentos</MenuItem>
