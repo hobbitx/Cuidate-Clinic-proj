@@ -1,6 +1,10 @@
 .app-footer {
-    background: #dcdcdc;
-    padding: .5rem 2rem;
-    text-align: right;
-    background-color: #333333;
+  background: #dcdcdc;
+  padding: 0.5rem 2rem;
+  text-align: right;
+  background-color: #333333;
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 96% !important;
+  height: 60px !important;
 }

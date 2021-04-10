@@ -56,7 +56,7 @@ class Home extends React.Component {
               <Route path="/listFuncionarios"  component={ListFuncionarios} />
             </Switch>
           </Conteudo>
-          <Footer />
+         
         </BrowserRouter>
       </React.Fragment>
     );

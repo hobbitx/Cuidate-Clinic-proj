@@ -3,7 +3,10 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paciente from "../functions/Paciente";
+import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
+import Footer from "../components/footer";
+
 import "./Add.css";
 
 const style = {
@@ -27,7 +30,7 @@ class AddPaciente extends React.Component {
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
   }
-  
+
   save = async () => {
     let response = await Paciente.add(
       this.state.nome,
@@ -68,10 +71,17 @@ class AddPaciente extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Snackbar open={this.state.error} autoHideDuration={3000}>
-          <Alert severity="errror">Error ao adicionar paciente</Alert>
-        </Snackbar>
         <div style={style}>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={this.state.error}
+            autoHideDuration={3000}
+          >
+            <Alert severity="errror">Error ao adicionar paciente</Alert>
+          </Snackbar>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               Cadastramento de paciente
@@ -221,6 +231,8 @@ class AddPaciente extends React.Component {
             <Grid item xs={4}></Grid>
           </Grid>
         </div>
+
+        <Footer />
       </React.Fragment>
     );
   }

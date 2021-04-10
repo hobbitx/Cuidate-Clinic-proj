@@ -1,19 +1,19 @@
 import config from "../config.json";
 
 const url = config.baseURL + "/paciente";
-export async function add(
-    nome,
-    email,
-    telefone,
-    cep,
-    logradouro,
-    bairro,
-    cidade,
-    estado,
-    peso,
-    altura,
-    tiposanguineo
-) {
+const add = async (
+  nome,
+  email,
+  telefone,
+  cep,
+  logradouro,
+  bairro,
+  cidade,
+  estado,
+  peso,
+  altura,
+  tiposanguineo
+) => {
   var body = {
     nome: `${nome}`,
     email: `${email}`,
@@ -45,11 +45,13 @@ export async function add(
       }
     })
     .then((json) => {
-        res = json;
+      res = json;
     })
     .catch((error) => {
       console.error(error);
       res = false;
     });
   return res;
-}
+};
+
+export default { add };
