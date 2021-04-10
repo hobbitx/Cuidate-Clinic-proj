@@ -2,37 +2,62 @@ import * as React from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Switch from "@material-ui/core/Switch";
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Button from '@material-ui/core/Button';
-
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Button from "@material-ui/core/Button";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Funcionario from "../functions/Funcionario";
 import "./Add.css";
 const style = {
-  "margin": "10%",
+  margin: "10%",
 };
 
 class AddDoctor extends React.Component {
   constructor() {
     super();
-    this.state={
-        isDoctor: false,
-        showPassword: false,
-    }
+    this.state = {
+      isDoctor: false,
+      showPassword: false,
+      error: false
+    };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
+    this.save = this.save.bind(this);
   }
-
+  save = async () => {
+    let response = await Funcionario.add(
+      this.state.nome,
+      this.state.email,
+      this.state.telefone,
+      this.state.cep,
+      this.state.logradouro,
+      this.state.bairro,
+      this.state.cidade,
+      this.state.estado,
+      this.state.datacontrato,
+      this.state.salario,
+      this.state.senha
+    );
+    if (response == "error") {
+      this.setState({
+        error: true
+      })
+    }else{
+      
+    }
+  };
   handleDateChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
   checkBox = (event) => {
-      console.log(event.target)
+    console.log(event.target);
     this.setState({
-      [event.target.name]: !this.state [event.target.name],
+      [event.target.name]: !this.state[event.target.name],
     });
   };
   handleMouseDownPassword = (event) => {
@@ -42,10 +67,16 @@ class AddDoctor extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Snackbar open={this.state.error} autoHideDuration={3000} >
+          <Alert severity="errror">
+            Error ao logar
+          </Alert>
+        </Snackbar>
         <div style={style}>
-        
           <Grid container spacing={1}>
-          <Grid item xs={12}>Cadastramento de funcionario</Grid>
+            <Grid item xs={12}>
+              Cadastramento de funcionario
+            </Grid>
             <Grid item xs={12} style={{ color: "#505050" }}>
               <Switch id="isDoctor" onChange={this.checkBox} name="isDoctor" />
               Médico
@@ -177,11 +208,11 @@ class AddDoctor extends React.Component {
                 label="Senha"
                 placeholder="****"
                 fullWidth
-                type={this.state.showPassword ? 'text' : 'password'}
+                type={this.state.showPassword ? "text" : "password"}
                 color="secondary"
                 variant="outlined"
                 InputProps={{
-                    endAdornment: 
+                  endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
@@ -190,42 +221,45 @@ class AddDoctor extends React.Component {
                         onMouseDown={this.handleMouseDownPassword}
                         edge="end"
                       >
-                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                        {this.state.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </IconButton>
                     </InputAdornment>
-                  }}
+                  ),
+                }}
               />
             </Grid>
-            {
-            this.state.isDoctor?
-            ( 
-            <Grid container spacing={1}>
-              <Grid item xs={4}>
-                <TextField
-                  id="especialidade"
-                  label="Especialidade"
-                  placeholder="Pediatria"
-                  multiline
-                  fullWidth
-                  color="secondary"
-                  variant="outlined"
-                />
+            {this.state.isDoctor ? (
+              <Grid container spacing={1}>
+                <Grid item xs={4}>
+                  <TextField
+                    id="especialidade"
+                    label="Especialidade"
+                    placeholder="Pediatria"
+                    multiline
+                    fullWidth
+                    color="secondary"
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    id="crm"
+                    label="CRM"
+                    placeholder="xxxx"
+                    multiline
+                    fullWidth
+                    color="secondary"
+                    variant="outlined"
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={4}>
-                <TextField
-                  id="crm"
-                  label="CRM"
-                  placeholder="xxxx"
-                  multiline
-                  fullWidth
-                  color="secondary"
-                  variant="outlined"
-                />
-              </Grid>
-            </Grid>)
-            :
-            <div></div>
-            }
+            ) : (
+              <div></div>
+            )}
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
               <Button variant="contained" fullWidth color="secondary">

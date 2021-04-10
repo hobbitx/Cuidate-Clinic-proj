@@ -1,24 +1,55 @@
 import * as React from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button';
-
+import Button from "@material-ui/core/Button";
+import Paciente from "../functions/Paciente";
+import Snackbar from "@material-ui/core/Snackbar";
 import "./Add.css";
+
 const style = {
   margin: "10%",
 };
 
+const initialState = {
+  isDoctor: false,
+  showPassword: false,
+  error: false,
+};
 class AddPaciente extends React.Component {
   constructor() {
     super();
     this.state = {
       isDoctor: false,
       showPassword: false,
+      error: false,
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
+    this.save = this.save.bind(this);
   }
-
+  
+  save = async () => {
+    let response = await Paciente.add(
+      this.state.nome,
+      this.state.email,
+      this.state.telefone,
+      this.state.cep,
+      this.state.logradouro,
+      this.state.bairro,
+      this.state.cidade,
+      this.state.estado,
+      this.state.peso,
+      this.state.altura,
+      this.state.tiposanguineo
+    );
+    if (response == "error") {
+      this.setState({
+        error: true,
+      });
+    } else {
+      this.setState(initialState);
+    }
+  };
   handleDateChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -37,9 +68,14 @@ class AddPaciente extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Snackbar open={this.state.error} autoHideDuration={3000}>
+          <Alert severity="errror">Error ao adicionar paciente</Alert>
+        </Snackbar>
         <div style={style}>
           <Grid container spacing={1}>
-          <Grid item xs={12}>Cadastramento de paciente</Grid>
+            <Grid item xs={12}>
+              Cadastramento de paciente
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 id="nome"
@@ -173,7 +209,12 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
-              <Button variant="contained" fullWidth color="secondary">
+              <Button
+                variant="contained"
+                onClick={this.save}
+                fullWidth
+                color="secondary"
+              >
                 Salvar
               </Button>
             </Grid>
