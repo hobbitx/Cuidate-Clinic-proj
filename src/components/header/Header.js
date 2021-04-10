@@ -12,6 +12,11 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Logar from "../../functions/Logar";
+
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { black } from "material-ui/styles/colors";
@@ -33,6 +38,7 @@ class Header extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.home = this.home.bind(this);
+    this.checkBox = this.checkBox.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.logar = this.logar.bind(this);
   }
@@ -75,20 +81,29 @@ class Header extends React.Component {
     console.log(this.props.history);
   };
 
-  logar = async () =>{
-    console.log(this.state.user,this.state.pass)
-    let userName = await Logar(this.state.user,this.state.pass)
+  logar = async () => {
+    console.log(this.state.user, this.state.pass);
+    let userName = await Logar(this.state.user, this.state.pass);
     this.setState({
       name: userName,
       logged: true,
-      loginModal: false
-    })
-  }
-handleDateChange = (event) => {
+      loginModal: false,
+    });
+  };
+  handleDateChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state)
+    console.log(this.state);
+  };
+  handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  checkBox = (event) => {
+    console.log(event.target);
+    this.setState({
+      [event.target.name]: !this.state[event.target.name],
+    });
   };
 
   render() {
@@ -123,30 +138,37 @@ handleDateChange = (event) => {
                 Galeria
               </Button>
             </Link>
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              className="app-header_text"
-            >
-              Novo Endereço
-            </Button>
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              className="app-header_text"
-            >
-              Agendamento
-            </Button>
+            <Link className="app-menu__link" to="/Galeria">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                className="app-header_text"
+              >
+                Novo Endereço
+              </Button>
+            </Link>
+            <Link className="app-menu__link" to="/Galeria">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                className="app-header_text"
+              >
+                Agendamento
+              </Button>
+            </Link>
             {this.state.logged ? (
-              <div>
-                <Button
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  className="app-header_text"
-                  onClick={this.menuCadastramento}
-                >
-                  Cadastramento
-                </Button>
+              <div >
+                <Link className="app-menu__link" to="/Galeria">
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    className="app-header_text"
+                    onClick={this.menuCadastramento}
+                  >
+                    Cadastramento
+                  </Button>
+                </Link>
+
                 <Menu
                   id="cadastramento"
                   anchorEl={this.state.cadastramento}
@@ -187,12 +209,27 @@ handleDateChange = (event) => {
                       Funcionários
                     </MenuItem>
                   </Link>
-                  <MenuItem onClick={this.closeListagem}>Pacientes</MenuItem>
-                  <MenuItem onClick={this.closeListagem}>Endereços</MenuItem>
-                  <MenuItem onClick={this.closeListagem}>Agendamentos</MenuItem>
-                  <MenuItem onClick={this.closeListagem}>
+                  <Link className="app-menu__link" to="/listFuncionarios">
+                    <MenuItem onClick={this.closeListagem}>
+                    Pacientes
+                    </MenuItem>
+                  </Link>
+                  <Link className="app-menu__link" to="/listFuncionarios">
+                    <MenuItem onClick={this.closeListagem}>
+                    Endereços
+                    </MenuItem>
+                  </Link>
+                  <Link className="app-menu__link" to="/listFuncionarios">
+                    <MenuItem onClick={this.closeListagem}>
+                    Agendamentos
+                    </MenuItem>
+                  </Link>
+                  <Link className="app-menu__link" to="/listFuncionarios">
+                    <MenuItem onClick={this.closeListagem}>
                     Minhas Consultas
-                  </MenuItem>
+                    </MenuItem>
+                  </Link>
+                 
                 </Menu>
               </div>
             ) : (
@@ -217,7 +254,6 @@ handleDateChange = (event) => {
           <Dialog
             open={this.state.loginModal}
             onClose={this.closeModal}
-            
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
@@ -233,16 +269,34 @@ handleDateChange = (event) => {
                 variant="outlined"
               />
               <TextField
-                name="pass"
-                label="Password"
-                type="password"
-                placeholder="pass"
-                multiline
+                id="pass"
+                label="Senha"
+                style={{ "margin-top": "10px" }}
+                placeholder="****"
                 onChange={this.handleDateChange}
-                style={{'margin-top':'13px'}}
                 fullWidth
+                type={this.state.showPassword ? "text" : "password"}
                 color="secondary"
                 variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={this.checkBox}
+                        name="showPassword"
+                        onMouseDown={this.handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {this.state.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </DialogContent>
             <DialogActions>

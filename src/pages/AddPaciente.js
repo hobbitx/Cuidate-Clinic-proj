@@ -6,7 +6,8 @@ import Paciente from "../functions/Paciente";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Footer from "../components/footer";
-
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import "./Add.css";
 
 const style = {
@@ -29,6 +30,7 @@ class AddPaciente extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   save = async () => {
@@ -58,6 +60,15 @@ class AddPaciente extends React.Component {
       [event.target.name]: event.target.value,
     });
   };
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({
+      error: false,
+    });
+  };
+
   checkBox = (event) => {
     console.log(event.target);
     this.setState({
@@ -75,13 +86,17 @@ class AddPaciente extends React.Component {
           <Snackbar
             anchorOrigin={{
               vertical: 'top',
-              horizontal: 'left',
+              horizontal: 'center',
             }}
+            message="Error ao adicionar paciente"
             open={this.state.error}
             autoHideDuration={3000}
-          >
-            <Alert severity="errror">Error ao adicionar paciente</Alert>
-          </Snackbar>
+            action={
+              <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+            }
+          />
           <Grid container spacing={1}>
             <Grid item xs={12}>
               Cadastramento de paciente
