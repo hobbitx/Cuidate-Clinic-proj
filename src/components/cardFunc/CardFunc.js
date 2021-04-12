@@ -23,7 +23,6 @@ class CardFunc extends React.Component {
     };
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
-  
   }
   closeModal = (event) => {
     this.setState({
@@ -43,95 +42,71 @@ class CardFunc extends React.Component {
       <React.Fragment>
         <Card>
           <Card.Content>
-            <Image floated="right" size="mini" src={this.props.image} />
-            <Card.Header>{this.props.name}</Card.Header>
-            {this.props.paciente ? (
+            <Image floated="right" size="mini" src={this.props.dados.image} />
+            <Card.Header>{this.props.dados.nome}</Card.Header>
+            {this.props.dados.paciente ? (
               ""
             ) : (
               <Card.Meta>
-                {this.props.cargo}{" "}
-                {this.props.especialidade ? this.props.especialidade : ""}
+                {this.props.dados.cargo}{" "}
+                {this.props.dados.especialidade
+                  ? this.props.dados.especialidade
+                  : ""}
               </Card.Meta>
             )}
             <Card.Description>
               <strong>email:</strong>
-              {this.props.email}
+              {this.props.dados.email}
               <br></br>
               <strong>telefone:</strong>
-              {this.props.telefone}
+              {this.props.dados.telefone}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
-              <Button basic color="green" onClick={this.openModal}>
-                Ver Mais
-              </Button>
+              <Button onClick={this.openModal}>Ver Mais</Button>
             </div>
           </Card.Content>
         </Card>
         <Dialog
-            open={this.state.loginModal}
-            onClose={this.closeModal}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <DialogContent>
-              <TextField
-                name="user"
-                label="Username"
-                placeholder="username"
-                multiline
-                fullWidth
-                onChange={this.handleDateChange}
-                color="secondary"
-                variant="outlined"
-              />
-              <TextField
-                id="pass"
-                label="Senha"
-                style={{ "margin-top": "10px" }}
-                placeholder="****"
-                onChange={this.handleDateChange}
-                fullWidth
-                type={this.state.showPassword ? "text" : "password"}
-                color="secondary"
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={this.checkBox}
-                        name="showPassword"
-                        onMouseDown={this.handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {this.state.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={this.logar}
-                style={{
-                  color: "#B72B2B",
-                  border: "1px solid",
-                  borderRadius: "20px",
-                  borderColor: "#fff",
-                }}
-              >
-                {this.state.logged ? this.state.name : "Logar"}
-              </Button>
-            </DialogActions>
-          </Dialog>
+          open={this.state.loginModal}
+          onClose={this.closeModal}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <DialogContent>
+            <div>
+              Logradouro: {this.props.dados.logradouro}<br/>
+              Bairro: {this.props.dados.bairro}<br/>
+              Cidade: {this.props.dados.cidade}<br/>
+              Estado: {this.props.dados.estado}<br/>
+              CEP: {this.props.dados.cep}<br/>
+            </div>
+            {this.props.paciente ? (
+              <div>
+                Peso: {this.props.dados.peso} KG <br/>
+                Altura:  {this.props.dados.altura} CM <br/>
+                Tipo Sanguineo: {this.props.dados.tiposanguineo}<br/>
+              </div>
+            ) : (
+              ""
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              onClick={this.closeModal}
+              style={{
+                color: "#B72B2B",
+                border: "1px solid",
+                borderRadius: "20px",
+                borderColor: "#fff",
+              }}
+            >
+              {"Fechar"}
+            </Button>
+          </DialogActions>
+        </Dialog>
       </React.Fragment>
     );
   }

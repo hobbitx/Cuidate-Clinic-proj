@@ -12,10 +12,16 @@ const funcionarios = [
   {
     nome: "Robert",
     image: "https://react.semantic-ui.com/images/avatar/large/steve.jpg",
-    cargo: "Medico",
-    especialidade: "Plastica",
     email: "robert@clinicacuidar.com.br",
     telefone: "31999909",
+    cep: "32341020",
+    logradouro:"Av Potiguara 828",
+    bairro : "Novo Eldorado",
+    cidade: "Contagem",
+    estado : "MG",
+    peso : "69",
+    altura : "176",
+    tiposanguineo : "A+"
   },
   {
     nome: "Renan",
@@ -51,17 +57,14 @@ class ListPacientes extends React.Component {
         <div style={style}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              Listagem de funcionarios
+              Listagem de Pacientes
             </Grid>
             <Card.Group>
               {funcionarios.map((item) => {
                 return (
                     <CardFunc
                       paciente="true"
-                      name={item.nome}
-                      especialidade={item.especialidade}
-                      email={item.email}
-                      telefone={item.telefone}
+                      dados={item}
                     />
                 );
               })}

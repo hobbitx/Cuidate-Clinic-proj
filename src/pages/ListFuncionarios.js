@@ -57,12 +57,7 @@ class ListFuncionarios extends React.Component {
               {funcionarios.map((item) => {
                 return (
                     <CardFunc
-                      cargo={item.cargo}
-                      name={item.nome}
-                      image={item.image}
-                      especialidade={item.especialidade}
-                      email={item.email}
-                      telefone={item.telefone}
+                    dados={item}
                     />
                 );
               })}
