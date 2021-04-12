@@ -7,7 +7,6 @@ import Footer from "../components/footer2";
 import "./Font.css";
 import Grid from "@material-ui/core/Grid";
 import { Container, Row, Col } from 'react-grid-system';
-import EventAvailableRoundedIcon from '@material-ui/icons/EventAvailableRounded';
 
 class Info extends React.Component {
   constructor() {
@@ -20,10 +19,40 @@ class Info extends React.Component {
         <div> 
           <Parallax blur={2} bgImage={clinica} bgImageAlt="clinica" strength={100}>
             <img src={logo_text} align="right" style={{ padding: "50px" }} />
-            <div style={{ height: "550px", width: "565px" }} />
+            <div style={{ height: "600px", width: "565px" }} />
           </Parallax>
         </div>
-          <EventAvailableRoundedIcon/>
+        <div> 
+          <Container justify="center" >
+            <Row justify="center" >
+              <Col sm={1} align="right" className='Box'>
+                <img src= "https://i.ibb.co/nQHsydH/calendar.jpg"/>
+              </Col>
+              <Col sm={4} >
+                <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjoyMiwidyI6MTAwMCwiZnMiOjIyLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/SG9yw6FyaW8gZGUgYXRlbmRpbWVudG8/geliat-extralight.png" style={{ paddingTop: "40px", paddingBottom: "10px" }}/>
+                <header className="Texto-1" border="20px">
+                Segunda - Sexta: 8h às 18h<br></br>
+                Sábado: 8h às 12h
+                </header>
+              </Col>
+              <Col sm={1}  className='Box'>
+                <img src= "https://i.ibb.co/f1JZJgc/phone.jpg"/>
+              </Col>
+              <Col sm={4}>
+                <br></br>
+                <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjoyMiwidyI6MTAwMCwiZnMiOjIyLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/VGVsZWZvbmVzIGRlIENvbnRhdG8/geliat-extralight.png" style={{ paddingTop: "20px", paddingBottom: "10px" }}/>
+                <header className="Texto-1" border="20px">
+                  (31) 34555555 <br></br> (31)999999999
+                </header>
+              </Col>
+            </Row>
+          </Container>
+        </div>  
+        <div style={{ padding: "10px" }}>
+          <Container className='Especial' >
+            <img src= "https://see.fontimg.com/api/renderfont4/8Mzm0/eyJyIjoiZnMiLCJoIjo0NywidyI6MTAwMCwiZnMiOjQ3LCJmZ2MiOiIjRkZGRkZGIiwiYmdjIjoiIzhBMDAwMCIsInQiOjF9/U3VhIHNhw7pkZSBlbSBib2FzIG3Do29zLg/sambosa.png"/>
+          </Container>
+        </div>    
         <div> 
           <br></br><br></br><br></br>
           <img src= "https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjo0MiwidyI6MTAwMCwiZnMiOjQyLCJmZ2MiOiIjODQxMDEwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/U29icmUgTsOzcw/geliat-extralight.png" align="left" style={{ padding: "150px" }}></img>
@@ -61,9 +90,12 @@ class Info extends React.Component {
           </Container>
         </div>
         <div>
+          <img src= "https://i.ibb.co/zfh5Fvr/pngwing-com.png" alt="logo"></img><br/><br/>
+          <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjo0NywidyI6MTAwMCwiZnMiOjQ3LCJmZ2MiOiIjODAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Q29uaGXDp2Egbm9zc2FzIGVzcGVjaWFsaWRhZGVz/geliat-extralight.png"/>
+        </div>
+        <div>
+
           <br></br>
-           <img src= "https://i.ibb.co/zfh5Fvr/pngwing-com.png" alt="logo"></img>
-          
         </div>
         
       <Footer />
