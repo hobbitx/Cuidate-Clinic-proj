@@ -98,7 +98,7 @@ class Galeria extends React.Component {
           <img src={logo_text} align="center" className="photo" />
         </div>
         <div style={{ padding: "30px", marginLeft: "100px"}}>
-         <Gallery images={IMAGES} enableImageSelection={false}/>
+          <Gallery images={IMAGES} enableImageSelection={false}/>
         </div>
       </React.Fragment>
     );

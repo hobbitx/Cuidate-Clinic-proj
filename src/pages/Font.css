@@ -1,0 +1,30 @@
+.Font {
+    text-align: justify;
+}
+.Font-header {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    height: 80%;
+    background: white;
+    color: rgb(183, 43, 43);
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    text-align: justify;
+    line-height: 1.5;
+    margin: 10px;
+  }
+.Texto {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:large;
+    border: "5px";
+    background: rgb(250, 229, 229);
+    color: rgb(183, 43, 43);
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 10px;
+}
