@@ -81,6 +81,7 @@ class CardFunc extends React.Component {
               Cidade: {this.props.dados.cidade}<br/>
               Estado: {this.props.dados.estado}<br/>
               CEP: {this.props.dados.cep}<br/>
+              
             </div>
             {this.props.paciente ? (
               <div>
@@ -89,7 +90,10 @@ class CardFunc extends React.Component {
                 Tipo Sanguineo: {this.props.dados.tiposanguineo}<br/>
               </div>
             ) : (
-              ""
+              <div>
+              Salario: R$ {this.props.dados.salario}<br />
+              Data do contrato: {this.props.dados.datacontrato.split("T")[0]}<br />
+              </div>
             )}
           </DialogContent>
           <DialogActions>

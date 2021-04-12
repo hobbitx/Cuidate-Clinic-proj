@@ -4,3 +4,6 @@
 .MuiChip-root .MuiChip-avatarColorSecondary{
     background-color: #B72B2B !important;
 }
+.MuiCircularProgress-colorPrimary {
+    color: #B72B2B !important;
+}

@@ -1,12 +1,13 @@
 import config from "../config.json";
 
-const url = config.baseURL + "/funcionario";
+const url = config.baseURL + "funcionario";
 export default async function add(
   nome,
   email,
   telefone,
   cep,
   logradouro,
+  numero,
   bairro,
   cidade,
   estado,
@@ -19,7 +20,7 @@ export default async function add(
     email: `${email}`,
     telefone: `${telefone}`,
     cep: `${cep}`,
-    logradouro: `${logradouro}`,
+    logradouro: `${logradouro + numero}`,
     bairro: `${bairro}`,
     estado: `${estado}`,
     cidade: `${cidade}`,
