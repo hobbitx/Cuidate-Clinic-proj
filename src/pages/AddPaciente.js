@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Paciente from "../functions/Paciente";
+import Paciente from "../functions/setPaciente";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Footer from "../components/footer";
@@ -34,6 +34,7 @@ class AddPaciente extends React.Component {
   }
 
   save = async () => {
+    console.log(this.state)
     let response = await Paciente.add(
       this.state.nome,
       this.state.email,
@@ -45,7 +46,7 @@ class AddPaciente extends React.Component {
       this.state.estado,
       this.state.peso,
       this.state.altura,
-      this.state.tiposanguineo
+      this.state.tipoSanguineo
     );
     if (response == "error") {
       this.setState({
@@ -103,8 +104,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="nome"
+                name="nome"
                 label="Nome"
+                onChange={this.handleDateChange}
                 placeholder="Ex: Joao da Silva"
                 multiline
                 fullWidth
@@ -114,8 +116,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="email"
+                name="email"
                 label="E-mail"
+                onChange={this.handleDateChange}
                 placeholder="example@gmail.com"
                 multiline
                 fullWidth
@@ -125,8 +128,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="telefone"
+                name="telefone"
                 label="Telefone"
+                onChange={this.handleDateChange}
                 placeholder="xx xxxxx-xxxx"
                 multiline
                 color="secondary"
@@ -136,8 +140,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={3}>
               <TextField
-                id="CEP"
+                name="cep"
                 label="CEP"
+                onChange={this.handleDateChange}
                 placeholder="xxx.xxx-xxx"
                 multiline
                 fullWidth
@@ -147,8 +152,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={8}>
               <TextField
-                id="logradouro"
+                name="logradouro"
                 label="Logradouro"
+                onChange={this.handleDateChange}
                 placeholder="Av Pitangui, 88"
                 multiline
                 fullWidth
@@ -158,8 +164,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={1}>
               <TextField
-                id="numero"
+                name="numero"
                 label="Nº"
+                onChange={this.handleDateChange}
                 placeholder="xx"
                 multiline
                 fullWidth
@@ -169,8 +176,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="bairro"
+                name="bairro"
                 label="Bairro"
+                onChange={this.handleDateChange}
                 placeholder="Cantina da serra"
                 multiline
                 fullWidth
@@ -180,8 +188,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="cidade"
+                name="cidade"
                 label="Cidade"
+                onChange={this.handleDateChange}
                 placeholder="Belo Horizonte"
                 multiline
                 fullWidth
@@ -191,8 +200,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="estado"
+                name="estado"
                 label="UF"
+                onChange={this.handleDateChange}
                 placeholder="MG"
                 multiline
                 fullWidth
@@ -202,8 +212,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="peso"
+                name="peso"
                 label="Peso"
+                onChange={this.handleDateChange}
                 placeholder="xx"
                 multiline
                 fullWidth
@@ -213,8 +224,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="altura"
+                name="altura"
                 label="Altura"
+                onChange={this.handleDateChange}
                 placeholder="170"
                 multiline
                 fullWidth
@@ -224,8 +236,9 @@ class AddPaciente extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="tipoSanguineo"
+                name="tipoSanguineo"
                 label="Tipo Sanguineo"
+                onChange={this.handleDateChange}
                 placeholder="A+"
                 fullWidth
                 color="secondary"

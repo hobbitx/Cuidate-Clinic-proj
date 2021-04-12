@@ -1,6 +1,6 @@
 import config from "../config.json";
 
-const url = config.baseURL + "/paciente";
+const url = config.baseURL + "paciente";
 const add = async (
   nome,
   email,
@@ -27,6 +27,7 @@ const add = async (
     altura: `${altura}`,
     tiposanguineo: `${tiposanguineo}`,
   };
+  console.log(body);
   let res = "";
   let myRequest = new Request(url);
   await fetch(myRequest, {
