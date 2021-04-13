@@ -6,8 +6,9 @@ import Paciente from "../functions/setPaciente";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Footer from "../components/footer";
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import getCep from "../functions/getEndereco";
 import "./Add.css";
 
 const style = {
@@ -26,15 +27,21 @@ class AddPaciente extends React.Component {
       isDoctor: false,
       showPassword: false,
       error: false,
+      isEditable: true,
+      bairro: "",
+      cidade: "",
+      estado: "",
+      logradouro:"",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.checkCep = this.checkCep.bind(this);
   }
 
   save = async () => {
-    console.log(this.state)
+    console.log(this.state);
     let response = await Paciente.add(
       this.state.nome,
       this.state.email,
@@ -60,16 +67,35 @@ class AddPaciente extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    
   };
   handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     this.setState({
       error: false,
     });
   };
-
+  async checkCep(event) {
+    
+    let endereco = await getCep(event.target.value);
+    if (endereco != false) {
+      console.log(endereco);
+      this.setState({
+        [event.target.name]: event.target.value,
+        bairro: endereco.bairro,
+        cidade: endereco.cidade,
+        estado: endereco.estado,
+        logradouro: endereco.logradouro
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value,
+        isEditable: false
+      });
+    }
+  }
   checkBox = (event) => {
     console.log(event.target);
     this.setState({
@@ -86,16 +112,21 @@ class AddPaciente extends React.Component {
         <div style={style}>
           <Snackbar
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
+              vertical: "top",
+              horizontal: "center",
             }}
             message="Error ao adicionar paciente"
             open={this.state.error}
             autoHideDuration={3000}
             action={
-              <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
+              <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={this.handleClose}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
             }
           />
           <Grid container spacing={1}>
@@ -139,11 +170,12 @@ class AddPaciente extends React.Component {
               />
             </Grid>
             <Grid item xs={3}>
+              
               <TextField
                 name="cep"
                 label="CEP"
-                onChange={this.handleDateChange}
-                placeholder="xxx.xxx-xxx"
+                onChange={this.checkCep}
+                placeholder="xx.xxx-xxx"
                 multiline
                 fullWidth
                 color="secondary"
@@ -153,7 +185,12 @@ class AddPaciente extends React.Component {
             <Grid item xs={8}>
               <TextField
                 name="logradouro"
+                value={this.state.logradouro}
                 label="Logradouro"
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Av Pitangui, 88"
                 multiline
@@ -165,6 +202,7 @@ class AddPaciente extends React.Component {
             <Grid item xs={1}>
               <TextField
                 name="numero"
+                value={this.state.numero}
                 label="Nº"
                 onChange={this.handleDateChange}
                 placeholder="xx"
@@ -178,6 +216,11 @@ class AddPaciente extends React.Component {
               <TextField
                 name="bairro"
                 label="Bairro"
+                value={this.state.bairro}
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Cantina da serra"
                 multiline
@@ -190,6 +233,11 @@ class AddPaciente extends React.Component {
               <TextField
                 name="cidade"
                 label="Cidade"
+                value={this.state.cidade}
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Belo Horizonte"
                 multiline
@@ -201,7 +249,12 @@ class AddPaciente extends React.Component {
             <Grid item xs={4}>
               <TextField
                 name="estado"
+                value={this.state.estado}
                 label="UF"
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="MG"
                 multiline

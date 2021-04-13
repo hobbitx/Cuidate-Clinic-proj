@@ -1,19 +1,28 @@
 import config from "../config.json";
 
-export default async function logar(username, pass) {
-  let url = config.baseURL + "logar";
+const url = config.baseURL + "/NovoEndereco";
+export default async function add(
+  cep,
+  logradouro,
+  bairro,
+  cidade,
+  estado
+) {
   var body = {
-    user: `${username}`,
-    senha: `${pass}`,
+    cep: `${cep}`,
+    logradouro: `${logradouro}`,
+    bairro: `${bairro}`,
+    cidade: `${cidade}`,
+    estado: `${estado}`
   };
-  let login = "";
+  let isLogin = "";
   let myRequest = new Request(url);
   await fetch(myRequest, {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
     },
   })
     .then((response) => {
@@ -23,12 +32,8 @@ export default async function logar(username, pass) {
         return "error";
       }
     })
-    .then((json) => {
-      login = json;
-    })
     .catch((error) => {
       console.error(error);
-      login = false;
     });
-  return login;
+  return isLogin;
 }

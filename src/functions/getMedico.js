@@ -1,19 +1,14 @@
 import config from "../config.json";
 
-export default async function logar(username, pass) {
-  let url = config.baseURL + "logar";
-  var body = {
-    user: `${username}`,
-    senha: `${pass}`,
-  };
-  let login = "";
-  let myRequest = new Request(url);
+const func = config.baseURL + "medico";
+export default async function get() {  
+  let medicos = [];
+  let myRequest = new Request(func);
   await fetch(myRequest, {
-    method: "POST",
-    body: JSON.stringify(body),
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
     },
   })
     .then((response) => {
@@ -24,11 +19,11 @@ export default async function logar(username, pass) {
       }
     })
     .then((json) => {
-      login = json;
+        medicos = json;
     })
     .catch((error) => {
       console.error(error);
-      login = false;
+      medicos = []
     });
-  return login;
+  return medicos;
 }

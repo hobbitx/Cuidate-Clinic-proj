@@ -1,19 +1,19 @@
 import config from "../config.json";
 
-const url = config.baseURL + "/NovoEndereco";
+const url = config.baseURL + "/Agendamento";
 export default async function add(
-  cep,
-  logradouro,
-  bairro,
-  cidade,
-  estado
+  data,
+  horario,
+  nome,
+  email,
+  telefone
 ) {
   var body = {
-    cep: `${cep}`,
-    logradouro: `${logradouro}`,
-    bairro: `${bairro}`,
-    cidade: `${cidade}`,
-    estado: `${estado}`
+    data: `${data}`,
+    horario: `${horario}`,
+    nome: `${nome}`,
+    email: `${email}`,
+    telefone: `${telefone}`
   };
   let isLogin = "";
   let myRequest = new Request(url);
@@ -34,7 +34,6 @@ export default async function add(
     })
     .catch((error) => {
       console.error(error);
-      isLogin = false;
     });
   return isLogin;
 }
