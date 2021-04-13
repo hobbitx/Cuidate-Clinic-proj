@@ -12,7 +12,7 @@ import MaterialInput from '@material-ui/core/Input';
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-import Endereco from "../functions/Endereco";
+import Endereco from "../functions/setEndereco";
 import "./Add.css";
 const style = {
     margin: "10%",
@@ -21,14 +21,7 @@ const style = {
 class AddAddress extends React.Component {
     constructor() {
         super();
-        this.state = {
-            isDoctor: false,
-            showPassword: false,
-            error: false
-        };
-        this.handleDateChange = this.handleDateChange.bind(this);
-        this.checkBox = this.checkBox.bind(this);
-        this.save = this.save.bind(this);
+        this.state = {};
     }
     save = async () => {
         let response = await Endereco.add(
@@ -38,37 +31,11 @@ class AddAddress extends React.Component {
             this.state.cidade,
             this.state.estado
         );
-        if (response == "error") {
-            this.setState({
-                error: true
-            })
-        } else {
-
-        }
-    };
-    handleDateChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
-    };
-    checkBox = (event) => {
-        console.log(event.target);
-        this.setState({
-            [event.target.name]: !this.state[event.target.name],
-        });
-    };
-    handleMouseDownPassword = (event) => {
-        event.preventDefault();
     };
 
     render() {
         return (
             <React.Fragment>
-                <Snackbar open={this.state.error} autoHideDuration={3000} >
-                    <Alert severity="errror">
-                        Error ao logar
-          </Alert>
-                </Snackbar>
                 <div style={style}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} >
