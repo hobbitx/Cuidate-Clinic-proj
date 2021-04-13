@@ -57,11 +57,10 @@ const IMAGES =
   caption: "Sua saúde em boas mãos"
 },
 {
-  src: "https://i.ibb.co/LQPS8BM/image.jpg",
-  thumbnail: "https://i.ibb.co/LQPS8BM/image.jpg",
+  src: "https://i.ibb.co/qYfWSL7/doc.jpg",
+  thumbnail: "https://i.ibb.co/qYfWSL7/doc.jpg",
   thumbnailWidth: 320,
-  thumbnailHeight: 274,
-  caption: "After Rain (Jeshu John - designerspics.com)"
+  thumbnailHeight: 274
 },
 {
   src: "https://i.ibb.co/LQPS8BM/image.jpg",
