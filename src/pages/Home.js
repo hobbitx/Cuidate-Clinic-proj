@@ -12,6 +12,7 @@ import AddFuncionario from "./AddFuncionario";
 import AddPaciente from "./AddPaciente";
 import ListFuncionarios from "./ListFuncionarios";
 import ListPacientes from "./ListPaciente";
+import NovoEndereco from "./NovoEndereco";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -56,6 +57,7 @@ class Home extends React.Component {
               <Route path="/addPaciente" component={AddPaciente} />
               <Route path="/listFuncionarios"  component={ListFuncionarios} />
               <Route path="/ListPacientes"  component={ListPacientes} />
+              <Route path="/NovoEndereco"  component={NovoEndereco} />
             </Switch>
           </Conteudo>
          
