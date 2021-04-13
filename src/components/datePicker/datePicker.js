@@ -24,11 +24,10 @@ class DatePicker extends React.Component {
     return (
         <TextField
         id="datetime-local"
-        label={this.props.label}
+        label="Data de contratação"
         variant = "outlined"
         type="date"
         fullWidth
-        defaultValue={this.props.selectedDate}
         onChange={this.onChange}
         InputLabelProps={{
           shrink: true,

@@ -244,7 +244,6 @@ class AddDoctor extends React.Component {
             <DatePicker
               onChange={this.handleDateChange}
               internalId={"dataContrato"}
-              selectedDate={this.state.date}
             />
               
             </Grid>
