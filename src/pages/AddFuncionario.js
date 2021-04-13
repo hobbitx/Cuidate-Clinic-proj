@@ -7,9 +7,12 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
+import "date-fns";
 import Snackbar from '@material-ui/core/Snackbar';
+import getCep from "../functions/getEndereco";
 import Alert from '@material-ui/lab/Alert';
 import Funcionario from "../functions/setFuncionario";
+import DatePicker from "../components/datePicker";
 import "./Add.css";
 const style = {
   margin: "10%",
@@ -21,12 +24,38 @@ class AddDoctor extends React.Component {
     this.state = {
       isDoctor: false,
       showPassword: false,
-      error: false
+      error: false,
+      isEditable: true,
+      bairro: "",
+      cidade: "",
+      estado: "",
+      logradouro:"",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
+    this.checkCep = this.checkCep.bind(this);
+    }
+  async checkCep(event) {
+    
+    let endereco = await getCep(event.target.value);
+    if (endereco != false) {
+      console.log(endereco);
+      this.setState({
+        [event.target.name]: event.target.value,
+        bairro: endereco.bairro,
+        cidade: endereco.cidade,
+        estado: endereco.estado,
+        logradouro: endereco.logradouro
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value,
+        isEditable: false
+      });
+    }
   }
+
   save = async () => {
     let response = await Funcionario.add(
       this.state.nome,
@@ -119,11 +148,12 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={3}>
-              <TextField
-                id="CEP"
+              
+            <TextField
+                name="cep"
                 label="CEP"
-                onChange={this.handleDateChange}
-                placeholder="xxx.xxx-xxx"
+                onChange={this.checkCep}
+                placeholder="xx.xxx-xxx"
                 multiline
                 fullWidth
                 color="secondary"
@@ -132,8 +162,13 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={8}>
               <TextField
-                id="logradouro"
+                name="logradouro"
+                value={this.state.logradouro}
                 label="Logradouro"
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Av Pitangui, 88"
                 multiline
@@ -156,8 +191,13 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="bairro"
+                name="bairro"
                 label="Bairro"
+                value={this.state.bairro}
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Cantina da serra"
                 multiline
@@ -168,8 +208,13 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="cidade"
+                name="cidade"
                 label="Cidade"
+                value={this.state.cidade}
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="Belo Horizonte"
                 multiline
@@ -180,8 +225,13 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="estado"
+                name="estado"
+                value={this.state.estado}
                 label="UF"
+                inputProps={{
+                  disabled: Boolean(this.state.isEditable),
+                  readOnly: Boolean(this.state.isEditable),
+                }}
                 onChange={this.handleDateChange}
                 placeholder="MG"
                 multiline
@@ -191,16 +241,11 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={4}>
-              <TextField
-                id="dataContrato"
-                label="Data do contrato"
-                onChange={this.handleDateChange}
-                placeholder="xx/xx/xx"
-                multiline
-                fullWidth
-                color="secondary"
-                variant="outlined"
-              />
+            <DatePicker
+              onChange={this.handleDateChange}
+              internalId={"dataContrato"}
+            />
+              
             </Grid>
             <Grid item xs={4}>
               <TextField

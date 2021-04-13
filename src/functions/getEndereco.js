@@ -1,19 +1,22 @@
-import config from "../config.json";
 
-export default async function logar(username, pass) {
-  let url = config.baseURL + "logar";
+    import config from "../config.json";
+
+const url = config.baseURL + "endereco/cep";
+export default async function add(
+ 
+  cep
+) {
   var body = {
-    user: `${username}`,
-    senha: `${pass}`,
-  };
-  let login = "";
+    cep: `${cep}`
+  }
+  let endereco = "";
   let myRequest = new Request(url);
   await fetch(myRequest, {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
     },
   })
     .then((response) => {
@@ -24,11 +27,11 @@ export default async function logar(username, pass) {
       }
     })
     .then((json) => {
-      login = json;
+        endereco = json;
     })
     .catch((error) => {
       console.error(error);
-      login = false;
+      endereco = false;
     });
-  return login;
+  return endereco;
 }
