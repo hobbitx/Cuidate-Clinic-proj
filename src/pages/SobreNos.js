@@ -30,6 +30,25 @@ import Onco from "../imagens/onco.png";
 import geriatria from "../imagens/geriatria.png";
 import endocrinologia from "../imagens/endocrinologia.png";
 import pneumo from "../imagens/pneumo.png";
+import CardNoticia from "../components/cardNoticia";
+import Grid from "@material-ui/core/Grid";
+import { Card } from "semantic-ui-react";
+
+const style = {
+  margin: "1%",
+};
+
+const noticias = [
+  {
+    nome: "Teste",
+    texto: "Aleatoriedade",
+    image: "https://ibcdn.canaltech.com.br/6LpyUmH_q-iP7yyAPqUGzoLneKE=/512x288/smart/i358573.png"
+  },{
+    nome: "Covid",
+    texto: "Fiquem em ksa porra",
+    image: "https://www.gov.br/pt-br/noticias/saude-e-vigilancia-sanitaria/2020/03/entenda-a-diferenca-entre-coronavirus-covid-19-e-novo-coronavirus/mitosis-3876669_1920.jpg/@@images/10852f76-0ff0-436b-8ab0-f9ed27b09f9e.png"
+  }
+]
 
 class Info extends React.Component {
   constructor() {
@@ -44,6 +63,20 @@ class Info extends React.Component {
             <div style={{ height: "600px", width: "565px" }} />
           </Parallax>
         </div>
+
+        <div style={style}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                Noticias
+              </Grid>
+              <Card.Group>
+                {noticias.map((item) => {
+                  return <CardNoticia dados={item} />;
+                })}
+              </Card.Group>
+            </Grid>
+          </div>
+
         <div style={{ paddingTop: "50px", paddingBottom: "50px" }} > 
           <Container justify="center" >
             <Row justify="center" >
