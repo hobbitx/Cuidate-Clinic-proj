@@ -9,7 +9,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-import Funcionario from "../functions/Funcionario";
+import Funcionario from "../functions/setFuncionario";
 import "./Add.css";
 const style = {
   margin: "10%",
@@ -34,6 +34,7 @@ class AddDoctor extends React.Component {
       this.state.telefone,
       this.state.cep,
       this.state.logradouro,
+      this.state.numero,
       this.state.bairro,
       this.state.cidade,
       this.state.estado,
@@ -85,6 +86,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="nome"
                 label="Nome"
+                onChange={this.handleDateChange}
                 placeholder="Ex: Joao da Silva"
                 multiline
                 fullWidth
@@ -96,6 +98,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="email"
                 label="E-mail"
+                onChange={this.handleDateChange}
                 placeholder="example@gmail.com"
                 multiline
                 fullWidth
@@ -107,6 +110,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="telefone"
                 label="Telefone"
+                onChange={this.handleDateChange}
                 placeholder="xx xxxxx-xxxx"
                 multiline
                 color="secondary"
@@ -118,6 +122,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="CEP"
                 label="CEP"
+                onChange={this.handleDateChange}
                 placeholder="xxx.xxx-xxx"
                 multiline
                 fullWidth
@@ -129,6 +134,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="logradouro"
                 label="Logradouro"
+                onChange={this.handleDateChange}
                 placeholder="Av Pitangui, 88"
                 multiline
                 fullWidth
@@ -140,6 +146,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="numero"
                 label="Nº"
+                onChange={this.handleDateChange}
                 placeholder="xx"
                 multiline
                 fullWidth
@@ -151,6 +158,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="bairro"
                 label="Bairro"
+                onChange={this.handleDateChange}
                 placeholder="Cantina da serra"
                 multiline
                 fullWidth
@@ -162,6 +170,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="cidade"
                 label="Cidade"
+                onChange={this.handleDateChange}
                 placeholder="Belo Horizonte"
                 multiline
                 fullWidth
@@ -173,6 +182,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="estado"
                 label="UF"
+                onChange={this.handleDateChange}
                 placeholder="MG"
                 multiline
                 fullWidth
@@ -184,6 +194,7 @@ class AddDoctor extends React.Component {
               <TextField
                 id="dataContrato"
                 label="Data do contrato"
+                onChange={this.handleDateChange}
                 placeholder="xx/xx/xx"
                 multiline
                 fullWidth
@@ -196,6 +207,7 @@ class AddDoctor extends React.Component {
                 id="salario"
                 label="Salario"
                 placeholder="5000"
+                onChange={this.handleDateChange}
                 multiline
                 fullWidth
                 color="secondary"
@@ -207,6 +219,7 @@ class AddDoctor extends React.Component {
                 id="senha"
                 label="Senha"
                 placeholder="****"
+                onChange={this.handleDateChange}
                 fullWidth
                 type={this.state.showPassword ? "text" : "password"}
                 color="secondary"
@@ -239,6 +252,7 @@ class AddDoctor extends React.Component {
                     id="especialidade"
                     label="Especialidade"
                     placeholder="Pediatria"
+                    onChange={this.handleDateChange}
                     multiline
                     fullWidth
                     color="secondary"
@@ -249,6 +263,7 @@ class AddDoctor extends React.Component {
                   <TextField
                     id="crm"
                     label="CRM"
+                    onChange={this.handleDateChange}
                     placeholder="xxxx"
                     multiline
                     fullWidth
