@@ -81,10 +81,12 @@ class Header extends React.Component {
   };
 
   logar = async () => {
-    console.log(this.state.user, this.state.pass);
-    let userName = await Logar(this.state.user, this.state.pass);
+    console.log(this.state.user, this.state.senha);
+    let user = await Logar(this.state.user, this.state.senha);
+    console.log(user)
     this.setState({
-      name: userName,
+      name: user[0].nome,
+      id: user[0].idpessoa,
       logged: true,
       loginModal: false,
     });
@@ -263,7 +265,7 @@ class Header extends React.Component {
                 variant="outlined"
               />
               <TextField
-                id="pass"
+                name="senha"
                 label="Senha"
                 style={{ "margin-top": "10px" }}
                 placeholder="****"

@@ -1,12 +1,12 @@
 import config from "../config.json";
 
-export default async function login(username, pass) {
-  /* let url = config.baseURL + "/login";
+export default async function logar(username, pass) {
+  let url = config.baseURL + "logar";
   var body = {
-    login: `${username}`,
+    user: `${username}`,
     senha: `${pass}`,
   };
-  let isLogin = "";
+  let login = "";
   let myRequest = new Request(url);
   await fetch(myRequest, {
     method: "POST",
@@ -24,13 +24,11 @@ export default async function login(username, pass) {
       }
     })
     .then((json) => {
-      isLogin = json;
+      login = json;
     })
     .catch((error) => {
       console.error(error);
-      isLogin = false;
+      login = false;
     });
-  return isLogin;
-  */
- return "Robert"
+  return login;
 }
