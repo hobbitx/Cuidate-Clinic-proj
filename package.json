@@ -13,11 +13,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-grid-gallery": "^0.5.5",
-<<<<<<< HEAD
     "react-input-mask": "^2.0.4",
-=======
     "react-grid-system": "^7.1.2",
->>>>>>> 1a48cd4ae6d7e3554108b3cfd5e77a564f48837a
     "react-parallax": "^3.2.1",
     "react-parallax-component": "^1.0.6",
     "react-router-dom": "^5.2.0",
