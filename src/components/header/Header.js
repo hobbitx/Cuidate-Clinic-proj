@@ -137,7 +137,7 @@ class Header extends React.Component {
                 Galeria
               </Button>
             </Link>
-            <Link className="app-menu__link" to="/Galeria">
+            <Link className="app-menu__link" to="/NovoEndereco">
               <Button
                 aria-controls="simple-menu"
                 aria-haspopup="true"

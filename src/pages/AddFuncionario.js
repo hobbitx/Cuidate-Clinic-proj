@@ -8,6 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import Snackbar from '@material-ui/core/Snackbar';
+import getCep from "../functions/getEndereco";
 import Alert from '@material-ui/lab/Alert';
 import Funcionario from "../functions/setFuncionario";
 import "./Add.css";
@@ -26,7 +27,28 @@ class AddDoctor extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
+    this.checkCep = this.checkCep.bind(this);
+    }
+  async checkCep(event) {
+    
+    let endereco = await getCep(event.target.value);
+    if (endereco != false) {
+      console.log(endereco);
+      this.setState({
+        [event.target.name]: event.target.value,
+        bairro: endereco.bairro,
+        cidade: endereco.cidade,
+        estado: endereco.estado,
+        logradouro: endereco.logradouro
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value,
+        isEditable: false
+      });
+    }
   }
+
   save = async () => {
     let response = await Funcionario.add(
       this.state.nome,
@@ -119,11 +141,12 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={3}>
-              <TextField
-                id="CEP"
+              
+            <TextField
+                name="cep"
                 label="CEP"
-                onChange={this.handleDateChange}
-                placeholder="xxx.xxx-xxx"
+                onChange={this.checkCep}
+                placeholder="xx.xxx-xxx"
                 multiline
                 fullWidth
                 color="secondary"
