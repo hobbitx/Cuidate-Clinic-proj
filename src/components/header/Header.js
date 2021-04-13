@@ -216,12 +216,12 @@ class Header extends React.Component {
                   <Link className="app-menu__link" to="/listFuncionarios">
                     <MenuItem onClick={this.closeListagem}>Endereços</MenuItem>
                   </Link>
-                  <Link className="app-menu__link" to="/listFuncionarios">
+                  <Link className="app-menu__link" to="/listAgendamento">
                     <MenuItem onClick={this.closeListagem}>
                       Agendamentos
                     </MenuItem>
                   </Link>
-                  <Link className="app-menu__link" to="/listFuncionarios">
+                  <Link className="app-menu__link" to="/listMinhaConsulta">
                     <MenuItem onClick={this.closeListagem}>
                       Minhas Consultas
                     </MenuItem>

@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import Gallery from 'react-grid-gallery';
 import logo_text from "../imagens/logo_text.png";
 import "./Galeria.css";
+import Footer from "../components/footer2";
+
 
 const IMAGES =
 [{
@@ -123,6 +125,7 @@ class Galeria extends React.Component {
         <div style={{ padding: "30px", marginLeft: "100px"}}>
           <Gallery images={IMAGES} enableImageSelection={false}/>
         </div>
+        <Footer />
       </React.Fragment>
     );
   }
