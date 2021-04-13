@@ -10,6 +10,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import getAgenda from "../functions/getAgenda";
+
 import "./List.css";
 
 const style = {
@@ -40,28 +42,31 @@ const useStyles = makeStyles({
   },
 });
 
-const agenda = [
-  {
-    nome: "Ferdinando",
-    hora: "10:00",
-    data: "20/05/2021",
-    email: "ttttt@email.com"
-  },{
-    nome: "Juscicleide",
-    hora: "14:00",
-    data: "20/05/2021",
-    email: "aaaaa@email.com"
-  }
-]
 
 
 class ListMinhaConsulta extends React.Component {
   constructor() {
     super();
-  }
-  
+    this.state = {
+      agenda: [],
+      loading: true,
+    };
+}
 
-  
+async componentWillMount() {
+  let response = await getAgenda();
+  console.log(this.props)
+  let idMed = this.props.location.pathname.split("/")[2]
+  let agendas = response.filter( agenda => {
+    return agenda.idmedico == idMed
+  })
+  console.log(response);
+  this.setState({
+    agenda: agendas,
+    loading: false,
+  });
+}
+
   render() {
     return (
       <React.Fragment>
@@ -83,12 +88,12 @@ class ListMinhaConsulta extends React.Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {agenda.map((row) => (
-                    <StyledTableRow key={row.nome}>
-                      <StyledTableCell align="right">{row.data}</StyledTableCell>
-                      <StyledTableCell align="right">{row.hora}</StyledTableCell>
-                      <StyledTableCell align="right">{row.nome}</StyledTableCell>
-                      <StyledTableCell align="right">{row.email}</StyledTableCell>
+                  {this.state.agenda.map((row) => (
+                    <StyledTableRow key={row.paciente}>
+                    <StyledTableCell align="right">{row.dia.slice(0, 10)}</StyledTableCell>
+                    <StyledTableCell align="right">{row.hora}</StyledTableCell>
+                    <StyledTableCell align="right">{row.paciente}</StyledTableCell>
+                    <StyledTableCell align="right">{row.email}</StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>

@@ -64,18 +64,7 @@ class Info extends React.Component {
           </Parallax>
         </div>
 
-        <div style={style}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                Noticias
-              </Grid>
-              <Card.Group>
-                {noticias.map((item) => {
-                  return <CardNoticia dados={item} />;
-                })}
-              </Card.Group>
-            </Grid>
-          </div>
+        
 
         <div style={{ paddingTop: "50px", paddingBottom: "50px" }} > 
           <Container justify="center" >
