@@ -1,16 +1,35 @@
 import React from "react";
 import { Parallax, Background } from "react-parallax";
 import clinica from "../imagens/clinica_red.JPG";
-import logo from "../imagens/logo.png";
 import logo_text from "../imagens/logo_text.png";
 import Footer from "../components/footer2";
 import Conheca from "../imagens/geliat-extralight (1).png";
+import gastro from "../imagens/gastro.png";
+import gineco from "../imagens/gineco.png";
+import ortopedia from "../imagens/ortopedia.png";
+import Otorrino from "../imagens/otorrino.png";
+import Pedriatria from "../imagens/pedriatria.png";
+import Derma from "../imagens/derma.png";
+import Cardio from "../imagens/cardio.png";
+import ClinicaMedica from "../imagens/ClinicaMedica.png";
 import "./Font.css";
-import Grid from "@material-ui/core/Grid";
 import { Container, Row, Col } from 'react-grid-system';
-import { makeStyles } from '@material-ui/core/styles';
-
-
+import Imgcardio from "../imagens/cardio-01.png";
+import Imgclinico from "../imagens/clinico-01.png";
+import Imgdermato from "../imagens/dermato-01.png";
+import Imggastro from "../imagens/gastro-01.png";
+import Imggineco from "../imagens/gineco-01.png";
+import Imgortopedia from "../imagens/ortopedia-01.png";
+import Imgpediatria from "../imagens/pediatria-01.png";
+import Imgotorrino from "../imagens/otorrino-01.png";
+import Imgendo from "../imagens/endocrino1.png";
+import Imgoncologia from "../imagens/oncologia.png";
+import Imgopulmao from "../imagens/pulmao1.png";
+import Imggeriatria from "../imagens/geriatra.png";
+import Onco from "../imagens/onco.png";
+import geriatria from "../imagens/geriatria.png";
+import endocrinologia from "../imagens/endocrinologia.png";
+import pneumo from "../imagens/pneumo.png";
 
 class Info extends React.Component {
   constructor() {
@@ -21,7 +40,7 @@ class Info extends React.Component {
       <div>
         <div > 
           <Parallax blur={2} bgImage={clinica} bgImageAlt="clinica" strength={100}>
-            <img src={logo_text} align="right" style={{ padding: "50px", paddingTop: "70px" }} />
+            <img src={logo_text} align="right" style={{ padding: "100px", paddingTop: "80px" }} />
             <div style={{ height: "600px", width: "565px" }} />
           </Parallax>
         </div>
@@ -58,7 +77,7 @@ class Info extends React.Component {
         </div>    
         <div> 
           <br></br><br></br><br></br>
-          <img src= "https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjo0MiwidyI6MTAwMCwiZnMiOjQyLCJmZ2MiOiIjODQxMDEwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/U29icmUgTsOzcw/geliat-extralight.png" align="left" style={{ padding: "150px" }}></img>
+          <img src= "https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjo0MiwidyI6MTAwMCwiZnMiOjQyLCJmZ2MiOiIjODQxMDEwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/U29icmUgTsOzcw/geliat-extralight.png" align="left" style={{ padding: "170px", paddingTop: "190px" }}></img>
           <br></br>
           <div className="Font">
             <header className="Font-header">
@@ -67,8 +86,6 @@ class Info extends React.Component {
               Nosso foco é no atendimento humanizado e na adoção de novas tecnologias.
               Contamos com estrutura própria para a realização de exames e procedimentos pedidos pelos médicos.
               <br></br>
-              Atendemos as especialidades: angiologia, dermatologia, cardiologia, clínica médica, endocrinologia, gastroenterologia, geriatria, ginecologia, pediatria, ortopedia, otorrinolaringologia e pneumologia.
-              Especialidades de apoio: psicologia, terapia ocupacional, nutrição e fonoaudiologia.
             </header>
           </div>
         </div>
@@ -90,15 +107,70 @@ class Info extends React.Component {
                 </header>
               </Col>
             </Row>
-          </Container>
+          </Container> 
         </div>
         <div>
           <img src= "https://i.ibb.co/zfh5Fvr/pngwing-com.png" alt="logo"></img><br/><br/>
-          <img src={Conheca} align="center" style={{ paddingTop: "20px" }} />
+          <img src={Conheca} align="center" style={{ padding: "50px" }} />
         </div>
         <div>
-        
- 
+          <Container>
+            <Row justify="center" align="center">
+              <Col sm={3} >
+              <img src={Imgpediatria} align="center" style={{ paddingTop: "20px" }} /><br></br>
+                <img src={Pedriatria} align="center" style={{ paddingTop: "20px", paddingLeft: "25px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imggastro} align="center" style={{ paddingTop: "20px" }} /><br></br>
+                <img src={gastro} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgotorrino} align="center" style={{ paddingTop: "20px" }} /><br></br>
+                <img src={Otorrino} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgclinico} align="center" style={{ paddingTop: "20px" }} /><br></br>
+                <img src={ClinicaMedica} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+            </Row>
+            <Row justify="center" align="center">
+              <Col sm={3} >
+              <img src={Imgortopedia} align="center" style={{ paddingTop: "40px" }} /><br></br>
+                <img src={ortopedia} align="center" style={{ paddingTop: "20px", paddingLeft: "25px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgdermato} align="center" style={{ paddingTop: "50px" }} /><br></br>
+                <img src={Derma} align="center" style={{ paddingTop: "30px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imggineco} align="center" style={{ paddingTop: "60px" }} /><br></br>
+                <img src={gineco} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgcardio} align="center" style={{ paddingTop: "70px" }} /><br></br>
+                <img src={Cardio} align="center" style={{ paddingTop: "30px" }} />
+              </Col>
+            </Row>
+            <Row justify="center" align="center">
+              <Col sm={3} >
+                <img src={Imgendo} align="center" style={{ paddingTop: "20px" }} /><br></br>
+                <img src={endocrinologia} align="center" style={{ paddingLeft: "15px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgoncologia} align="center" style={{ paddingTop: "50px" }} /><br></br>
+                <img src={Onco} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imgopulmao} align="center" style={{ paddingTop: "50px" }} /><br></br>
+                <img src={pneumo} align="center" style={{ paddingTop: "20px" }} />
+              </Col>
+              <Col sm={3}>
+              <img src={Imggeriatria} align="center" style={{ paddingTop: "70px" }} /><br></br>
+                <img src={geriatria} align="center" style={{ paddingTop: "20px", paddingLeft: "15px" }} />
+              </Col>
+            </Row>
+          </Container> 
+          
           <br></br>
         </div>
         
