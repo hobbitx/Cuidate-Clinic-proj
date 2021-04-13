@@ -4,29 +4,32 @@ import clinica from "../imagens/clinica_red.JPG";
 import logo from "../imagens/logo.png";
 import logo_text from "../imagens/logo_text.png";
 import Footer from "../components/footer2";
+import Conheca from "../imagens/geliat-extralight (1).png";
 import "./Font.css";
 import Grid from "@material-ui/core/Grid";
 import { Container, Row, Col } from 'react-grid-system';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 class Info extends React.Component {
   constructor() {
     super();
   }
-  
   render() {
     return (
       <div>
-        <div> 
+        <div > 
           <Parallax blur={2} bgImage={clinica} bgImageAlt="clinica" strength={100}>
-            <img src={logo_text} align="right" style={{ padding: "50px" }} />
+            <img src={logo_text} align="right" style={{ padding: "50px", paddingTop: "70px" }} />
             <div style={{ height: "600px", width: "565px" }} />
           </Parallax>
         </div>
-        <div> 
+        <div style={{ paddingTop: "50px", paddingBottom: "50px" }} > 
           <Container justify="center" >
             <Row justify="center" >
               <Col sm={1} align="right" className='Box'>
-                <img src= "https://i.ibb.co/nQHsydH/calendar.jpg"/>
+                <img src= "https://i.ibb.co/CPkvkj2/calendar.png"/> 
               </Col>
               <Col sm={4} >
                 <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjoyMiwidyI6MTAwMCwiZnMiOjIyLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/SG9yw6FyaW8gZGUgYXRlbmRpbWVudG8/geliat-extralight.png" style={{ paddingTop: "40px", paddingBottom: "10px" }}/>
@@ -36,7 +39,7 @@ class Info extends React.Component {
                 </header>
               </Col>
               <Col sm={1}  className='Box'>
-                <img src= "https://i.ibb.co/f1JZJgc/phone.jpg"/>
+                <img src= "https://i.ibb.co/s3RccYV/phone.png"/>
               </Col>
               <Col sm={4}>
                 <br></br>
@@ -91,10 +94,11 @@ class Info extends React.Component {
         </div>
         <div>
           <img src= "https://i.ibb.co/zfh5Fvr/pngwing-com.png" alt="logo"></img><br/><br/>
-          <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjo0NywidyI6MTAwMCwiZnMiOjQ3LCJmZ2MiOiIjODAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Q29uaGXDp2Egbm9zc2FzIGVzcGVjaWFsaWRhZGVz/geliat-extralight.png"/>
+          <img src={Conheca} align="center" style={{ paddingTop: "20px" }} />
         </div>
         <div>
-
+        
+ 
           <br></br>
         </div>
         
