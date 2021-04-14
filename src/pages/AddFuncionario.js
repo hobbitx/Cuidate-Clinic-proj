@@ -8,9 +8,10 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import "date-fns";
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from "@material-ui/core/Snackbar";
 import getCep from "../functions/getEndereco";
-import Alert from '@material-ui/lab/Alert';
+import InputMask from "react-input-mask";
+import Alert from "@material-ui/lab/Alert";
 import Funcionario from "../functions/setFuncionario";
 import DatePicker from "../components/datePicker";
 import "./Add.css";
@@ -29,15 +30,14 @@ class AddDoctor extends React.Component {
       bairro: "",
       cidade: "",
       estado: "",
-      logradouro:"",
+      logradouro: "",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
     this.save = this.save.bind(this);
     this.checkCep = this.checkCep.bind(this);
-    }
+  }
   async checkCep(event) {
-    
     let endereco = await getCep(event.target.value);
     if (endereco != false) {
       console.log(endereco);
@@ -46,12 +46,12 @@ class AddDoctor extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
-        logradouro: endereco.logradouro
+        logradouro: endereco.logradouro,
       });
     } else {
       this.setState({
         [event.target.name]: event.target.value,
-        isEditable: false
+        isEditable: false,
       });
     }
   }
@@ -73,15 +73,16 @@ class AddDoctor extends React.Component {
     );
     if (response == "error") {
       this.setState({
-        error: true
-      })
-    }else{
-      
+        error: true,
+      });
+    } else {
     }
   };
   handleDateChange = (event) => {
+    let value = event.target.value.replace(".", "");
+    value = value.replace("-", "");
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: value,
     });
   };
   checkBox = (event) => {
@@ -97,10 +98,8 @@ class AddDoctor extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Snackbar open={this.state.error} autoHideDuration={3000} >
-          <Alert severity="errror">
-            Error ao logar
-          </Alert>
+        <Snackbar open={this.state.error} autoHideDuration={3000}>
+          <Alert severity="errror">Error ao logar</Alert>
         </Snackbar>
         <div style={style}>
           <Grid container spacing={1}>
@@ -148,17 +147,27 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={3}>
-              
-            <TextField
+            <InputMask
+                mask="99.999-999"
+                value={this.state.cep}
+                disabled={false}
                 name="cep"
-                label="CEP"
-                onChange={this.checkCep}
-                placeholder="xx.xxx-xxx"
-                multiline
-                fullWidth
-                color="secondary"
-                variant="outlined"
-              />
+                maskChar=" "
+                onChange={this.handleDateChange}
+              >
+                {() => (
+                  <TextField
+                    name="cep2"
+                    label="CEP"
+                    placeholder="xx.xxx-xxx"
+                    multiline
+                    fullWidth
+                    color="secondary"
+                    variant="outlined" 
+                    InputProps={{ inputComponent: InputMask }}
+                  />
+                )}
+              </InputMask>
             </Grid>
             <Grid item xs={8}>
               <TextField
@@ -241,11 +250,10 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={4}>
-            <DatePicker
-              onChange={this.handleDateChange}
-              internalId={"dataContrato"}
-            />
-              
+              <DatePicker
+                onChange={this.handleDateChange}
+                internalId={"dataContrato"}
+              />
             </Grid>
             <Grid item xs={4}>
               <TextField
