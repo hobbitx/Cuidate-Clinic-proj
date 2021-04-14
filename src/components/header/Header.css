@@ -1,27 +1,35 @@
 .app-header {
-    background-color: #B72B2B;
-    display: flex;
-    padding-left: 15px !important;
-    align-items: flex-start;
+  background-color: #b72b2b;
+  display: flex;
+  padding-left: 15px !important;
+  align-items: flex-start;
 }
 
 .app-header__logo {
-    background: #999;
-    height: 25px;
-    width: 100px;
+  background: #999;
+  height: 25px;
+  width: 100px;
 }
 .app-header_text {
-    margin-left: 5px;
-    color: white  !important;
+  margin-left: 5px !important;
+  margin-bottom: 7px !important;
+  color: white !important;
 }
 .login {
-    bottom: 0;
-    left: 0;
-    margin-left: auto;
+  bottom: 0;
+  left: 0;
+  margin-left: auto;
+}
+.MuiIconButton-edgeStart {
+    margin-left: -12px;
 }
 .app-menu__link {
-    color: #595959;
-    font-family: sans-serif;
-    margin-right: 1rem;
-    text-decoration: none;
+  color: #595959;
+  font-family: sans-serif;
+  margin-right: 1rem;
+  margin-top: 10px;
+  text-decoration: none;
+}
+.MuiButtonBase-root .MuiButton-root .MuiButton-text .app-header_text{
+  margin-top: 10px;
 }

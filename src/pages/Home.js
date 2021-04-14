@@ -5,10 +5,19 @@ import Footer from "../components/footer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Conteudo from "../components/conteudo";
 import PropTypes from "prop-types";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Galeria from "../pages/Galeria";
 import Info from "../pages/SobreNos";
+import AddFuncionario from "./AddFuncionario";
+import AddPaciente from "./AddPaciente";
+import ListFuncionarios from "./ListFuncionarios";
+import ListPacientes from "./ListPaciente";
+import NovoEndereco from "./NovoEndereco";
+import ListMinhaConsulta from './ListMinhaConsulta';
+import ListAgendamento from './ListAgendamento';
+import Agendamento from "./Agendamento";
+import ListEndereco from "./listEndereco";
+
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -49,13 +58,22 @@ class Home extends React.Component {
             <Switch>
               <Route exact path="/" component={Info} />
               <Route path="/galeria" component={Galeria} />
+              <Route path="/addFuncionario" component={AddFuncionario} />
+              <Route path="/addPaciente" component={AddPaciente} />
+              <Route path="/listFuncionarios"  component={ListFuncionarios} />
+              <Route path="/ListPacientes"  component={ListPacientes} />
+              <Route path="/NovoEndereco"  component={NovoEndereco} />
+              <Route path="/listMinhaConsulta" component={ListMinhaConsulta}/>
+              <Route path="/listAgendamento" component={ListAgendamento}/>
+              <Route path="/Agendamento"  component={Agendamento} />
+              <Route path="/listEndereco" component={ListEndereco}/>
             </Switch>
           </Conteudo>
-          <Footer />
         </BrowserRouter>
       </React.Fragment>
     );
   }
 }
 
+//  <Route path="/Agendamento"  component={Agendamento} />
 export default Home;
