@@ -211,6 +211,10 @@ class Info extends React.Component {
               <img src={boletim} style={{ align:"center", verticalAlign: "center", paddingTop: "50px" }} />
             </div>
           </Carousel>
+          <div className="Font-footer" style={{ padding: 30, alignContent: "center", textAlign:"center", justifyContent:"center" }}>
+            Avenida Getúlio Vargas, 1427
+            Savassi - Belo Horizonte
+          </div>
         </div>
       <Footer /> 
       </div>

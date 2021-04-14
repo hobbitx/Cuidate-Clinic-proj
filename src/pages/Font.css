@@ -60,3 +60,13 @@
     padding-bottom: 50px;
     text-align: center;
 }
+.Font-footer {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    height: 100%;
+    background: white;
+    color: rgb(183, 43, 43);
+    text-align:center;
+    justify-content: center;
+    align-content: center;
+    line-height: 1.5;
+  }
