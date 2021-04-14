@@ -90,8 +90,7 @@ class AddPaciente extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
-        numero: endereco.logradouro.replace(/\D/g, ""),
-        logradouro: endereco.logradouro.replace(/([^\d])+/gim, ''),
+        logradouro: endereco.logradouro.replace(/([^\D])+/gim, ''),
       });
     } else {
       this.setState({

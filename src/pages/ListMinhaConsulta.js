@@ -92,10 +92,10 @@ async componentWillMount() {
                 <TableBody>
                   {this.state.agenda.map((row) => (
                     <StyledTableRow key={row.paciente}>
-                    <StyledTableCell align="right">{row.dia.slice(0, 10)}</StyledTableCell>
-                    <StyledTableCell align="right">{row.hora}</StyledTableCell>
-                    <StyledTableCell align="right">{row.paciente}</StyledTableCell>
-                    <StyledTableCell align="right">{row.email}</StyledTableCell>
+                    <StyledTableCell align="center">{row.dia.slice(0, 10)}</StyledTableCell>
+                    <StyledTableCell align="center">{row.hora}</StyledTableCell>
+                    <StyledTableCell align="center">{row.paciente}</StyledTableCell>
+                    <StyledTableCell align="center">{row.email}</StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>

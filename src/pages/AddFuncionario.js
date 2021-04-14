@@ -32,6 +32,7 @@ class AddDoctor extends React.Component {
       bairro: "",
       cidade: "",
       estado: "",
+      numero:"",
       logradouro: "",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -52,8 +53,7 @@ class AddDoctor extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
-        numero: endereco.logradouro.replace(/\D/g, ""),
-        logradouro: endereco.logradouro.replace(/([^\d])+/gim, ''),
+        logradouro: endereco.logradouro.replace(/([^\D])+/gim, ''),
       });
     } else {
       this.setState({
@@ -198,6 +198,8 @@ class AddDoctor extends React.Component {
                 id="numero"
                 label="Nº"
                 onChange={this.handleDateChange}
+                
+                value={this.state.numero}
                 placeholder="xx"
                 multiline
                 fullWidth

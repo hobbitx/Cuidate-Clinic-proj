@@ -70,3 +70,7 @@
     align-content: center;
     line-height: 1.5;
   }
+
+.button{
+    display: none !important;
+}

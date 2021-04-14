@@ -69,7 +69,6 @@ class Home extends React.Component {
               <Route path="/listEndereco" component={ListEndereco}/>
             </Switch>
           </Conteudo>
-         
         </BrowserRouter>
       </React.Fragment>
     );

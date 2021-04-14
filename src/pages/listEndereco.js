@@ -90,12 +90,12 @@ class ListEndereco extends React.Component {
                     <TableBody>
                     {this.state.endereco.map((row) => (
                         <StyledTableRow key={row.idbase_enderecos}>
-                        <StyledTableCell align="right">{row.idbase_enderecos}</StyledTableCell>
-                        <StyledTableCell align="right">{row.estado}</StyledTableCell>
-                        <StyledTableCell align="right">{row.cidade}</StyledTableCell>
-                        <StyledTableCell align="right">{row.bairro}</StyledTableCell>
-                        <StyledTableCell align="right">{row.cep}</StyledTableCell>
-                        <StyledTableCell align="right">{row.logradouro}</StyledTableCell>
+                        <StyledTableCell align="center">{row.idbase_enderecos}</StyledTableCell>
+                        <StyledTableCell align="center">{row.estado}</StyledTableCell>
+                        <StyledTableCell align="center">{row.cidade}</StyledTableCell>
+                        <StyledTableCell align="center">{row.bairro}</StyledTableCell>
+                        <StyledTableCell align="center">{row.cep}</StyledTableCell>
+                        <StyledTableCell align="center">{row.logradouro}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                     </TableBody>

@@ -11,6 +11,8 @@ import getPacientes from "../functions/getPacientes";
 import setAgenda from "../functions/setAgendamento";
 import getHorarios from "../functions/getHorarios";
 
+import Footer from "../components/footer";
+
 import "./Add.css";
 
 const style = {
@@ -37,18 +39,21 @@ class AddSchedule extends React.Component {
     let paciente = this.state.pacientes.find( p =>{
         return p.idpaciente == this.state.selectPaciente
     })
+    let formatedHora = new Date(this.state.data)
+    let month = formatedHora.getMonth()+1
     let response = await setAgenda(
       
-        this.state.data,
+        (formatedHora.getFullYear()+"/"+month+"/"+formatedHora.getDate()),
         this.state.hora,
         paciente.nome,
         paciente.email,
         paciente.telefone,
         this.state.idMedico
     )
+    this.forceUpdate()
   };
 
-  async componentWillMount() {
+  async componentWillMount() {  
     let especialidade = await getEspecialidade();
     let pacientes = await getPacientes();
     let medico = await getMedico();
@@ -86,9 +91,9 @@ class AddSchedule extends React.Component {
       let data =
         event.target.value.split("-")[0] +
         "-" +
-        event.target.value.split("-")[2] +
+        event.target.value.split("-")[1] +
         "-" +
-        event.target.value.split("-")[1];
+        event.target.value.split("-")[2];
       
         let disponiveis = this.state.horarios.filter((horario) => {
         return horario.data.split("T")[0] == data;
@@ -218,6 +223,7 @@ class AddSchedule extends React.Component {
             <Grid item xs={4}></Grid>
           </Grid>
         </div>
+        <Footer />
       </React.Fragment>
     );
   }

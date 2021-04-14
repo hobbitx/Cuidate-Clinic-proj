@@ -90,13 +90,13 @@ class ListAgendamento extends React.Component {
                     <TableBody>
                     {this.state.agenda.map((row) => (
                         <StyledTableRow key={row.paciente}>
-                        <StyledTableCell align="right">{row.dia.slice(0, 10)}</StyledTableCell>
-                        <StyledTableCell align="right">{row.hora}</StyledTableCell>
-                        <StyledTableCell align="right">{row.paciente}</StyledTableCell>
-                        <StyledTableCell align="right">{row.email}</StyledTableCell>
-                        <StyledTableCell align="right">{row.telefone}</StyledTableCell>
-                        <StyledTableCell align="right">{row.medico}</StyledTableCell>
-                        <StyledTableCell align="right">{row.especialidade}</StyledTableCell>
+                        <StyledTableCell align="center">{row.dia.slice(0, 10)}</StyledTableCell>
+                        <StyledTableCell align="center">{row.hora}</StyledTableCell>
+                        <StyledTableCell align="center">{row.paciente}</StyledTableCell>
+                        <StyledTableCell align="center">{row.email}</StyledTableCell>
+                        <StyledTableCell align="center">{row.telefone}</StyledTableCell>
+                        <StyledTableCell align="center">{row.medico}</StyledTableCell>
+                        <StyledTableCell align="center">{row.especialidade}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                     </TableBody>
@@ -104,7 +104,6 @@ class ListAgendamento extends React.Component {
                 </TableContainer>
             </div>
         )}
-        <Footer />
       </React.Fragment>
     );
   }
