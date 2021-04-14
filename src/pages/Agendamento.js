@@ -1,23 +1,12 @@
 import * as React from "react";
-import { render } from "react-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Switch from "@material-ui/core/Switch";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import InputMask from "react-input-mask";
-import MaterialInput from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
 import getEspecialidade from "../functions/getEspecialidade";
+import getMedico from "../functions/getMedico";
+import DatePicker from "../components/datePicker";
+import HourPicker from "../components/hourPicker";
 import "./Add.css";
 
 const style = {
@@ -28,19 +17,33 @@ class AddSchedule extends React.Component {
   constructor() {
     super();
     this.state = {
-        especialidades: [],
-        medicos: [],
-        loading: true,
-      };
+      especialidades: [],
+      filteredEspecialidade: [],
+      medicos: [],
+      loading: true,
+    };
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
   async componentWillMount() {
-    let response = await getEspecialidade();
-    console.log(response);
+    let especialidade = await getEspecialidade();
+    let medico = await getMedico();
+    console.log(especialidade);
     this.setState({
-      especialidades: response,
+      especialidades: especialidade,
+      medicos: medico,
       loading: false,
     });
   }
+
+  handleDateChange = (event) => {
+    let filteredEspecialidade = this.state.medicos.filter((medico) => {
+      return medico.especialidade == event.target.value;
+    });
+    this.setState({
+      [event.target.name]: event.target.value,
+      filteredEspecialidade: filteredEspecialidade,
+    });
+  };
 
   render() {
     return (
@@ -50,14 +53,22 @@ class AddSchedule extends React.Component {
             <Grid item xs={12}>
               Agendamento
             </Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={6}>
               <TextField
-                id="especialidades"
+                name="selectEspecialidade"
                 select
+                onChange={this.handleDateChange}
                 label="Especialidade"
-                helperText="Por favor, selecione a especialidade.">
+                helperText="Por favor, selecione a especialidade."
+              >
                 {this.state.especialidades.map((option) => (
-                  <MenuItem key={option.especialidade} value={option.especialidade}>
+                  <MenuItem
+                    key={option.especialidade}
+                    value={option.especialidade}
+                  >
                     {option.especialidade}
                   </MenuItem>
                 ))}
@@ -65,17 +76,35 @@ class AddSchedule extends React.Component {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                id="medicos"
+                name="medico"
                 select
+                onChange={this.handleDateChange}
                 label="Médico"
-                helperText="Selecione o médico.">
-                {this.state.medicos.map((option) => (
-                  <MenuItem key={option.medico} value={option.medico}>
-                    {option.medico}
+                helperText="Selecione o médico."
+              >
+                {this.state.filteredEspecialidade.map((option) => (
+                  <MenuItem key={option.nome} value={option.idmedico}>
+                    {option.nome}
                   </MenuItem>
                 ))}
               </TextField>
             </Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={6}>
+              <DatePicker
+                onChange={this.handleDateChange}
+                internalId={"data"}
+                label="Data"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <HourPicker
+                onChange={this.handleDateChange}
+                internalId={"data"}
+                label="Data"
+              />
+            </Grid>
+            <Grid item xs={4}></Grid>
             <Grid item xs={4}>
               <Button variant="contained" fullWidth color="secondary">
                 Agendar
