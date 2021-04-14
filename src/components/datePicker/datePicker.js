@@ -24,7 +24,7 @@ class DatePicker extends React.Component {
     return (
         <TextField
         id="datetime-local"
-        label="Data de contratação"
+        label={this.props.label}
         variant = "outlined"
         type="date"
         fullWidth

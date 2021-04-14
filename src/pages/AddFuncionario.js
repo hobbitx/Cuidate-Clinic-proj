@@ -256,10 +256,11 @@ class AddDoctor extends React.Component {
               />
             </Grid>
             <Grid item xs={4}>
-              <DatePicker
-                onChange={this.handleDateChange}
-                internalId={"dataContrato"}
-              />
+            <DatePicker
+              onChange={this.handleDateChange}
+              internalId={"dataContrato"}
+              label="Data de Contratação"
+            />
             </Grid>
             <Grid item xs={4}>
               <TextField
