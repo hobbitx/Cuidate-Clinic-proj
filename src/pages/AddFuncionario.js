@@ -28,6 +28,7 @@ class AddDoctor extends React.Component {
       isDoctor: false,
       showPassword: false,
       error: false,
+      success: false,
       isEditable: true,
       bairro: "",
       cidade: "",
@@ -81,8 +82,13 @@ class AddDoctor extends React.Component {
     if (response == "error") {
       this.setState({
         error: true,
+        message: "Error ao logar"
       });
     } else {
+      this.setState({
+        success: true,
+        message: "Salvo com sucesso"
+      });
     }
   };
   handleDateChange = (event) => {
@@ -105,9 +111,26 @@ class AddDoctor extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Snackbar open={this.state.error} autoHideDuration={3000}>
-          <Alert severity="errror">Error ao logar</Alert>
-        </Snackbar>
+       <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.error}
+            autoHideDuration={2000}
+          >
+            <Alert severity="error">Error ao Salvar</Alert>
+          </Snackbar>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.success}
+            autoHideDuration={2000}
+          >
+            <Alert severity="success">Salvo com sucesso</Alert>
+          </Snackbar>
         <div style={style}>
           <Grid container spacing={1}>
             <Grid item xs={12}>

@@ -30,6 +30,7 @@ class Header extends React.Component {
       listagem: false,
       isDoctor: false,
       loginModal: false,
+      error: false
     };
     this.menuCadastramento = this.menuCadastramento.bind(this);
     this.menuListagem = this.menuListagem.bind(this);
@@ -69,6 +70,10 @@ class Header extends React.Component {
       this.setState({
         loginModal: true,
       });
+    }else{
+      this.setState({
+        logged: false,
+      });
     }
   };
   closeListagem = (event) => {
@@ -84,15 +89,21 @@ class Header extends React.Component {
   logar = async () => {
     console.log(this.state.user, this.state.senha);
     let user = await Logar(this.state.user, this.state.senha);
-    console.log(user)
-    this.setState({
-      name: user[0].nome,
-      id: user[0].idpessoa,
-      isDoctor: user[0].idfuncionario[0] == "m"?true:false,
-      logged: true,
-      loginModal: false,
-      url: "/listMinhaConsulta/"+user[0].idpessoa
-    });
+    console.log(user);
+    if (user != false) {
+      this.setState({
+        name: user[0].nome,
+        id: user[0].idpessoa,
+        isDoctor: user[0].idfuncionario[0] == "m" ? true : false,
+        logged: true,
+        loginModal: false,
+        url: "/listMinhaConsulta/" + user[0].idpessoa,
+      });
+    } else {
+      this.setState({
+        error: true
+      })
+    }
   };
   handleDateChange = (event) => {
     this.setState({
@@ -161,15 +172,15 @@ class Header extends React.Component {
               </Button>
             </Link>
             {this.state.logged ? (
-              <div style={{'margin-top': '10px'}}>
-                  <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    className="app-header_text"
-                    onClick={this.menuCadastramento}
-                  >
-                    Cadastramento
-                  </Button>
+              <div style={{ "margin-top": "10px" }}>
+                <Button
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  className="app-header_text"
+                  onClick={this.menuCadastramento}
+                >
+                  Cadastramento
+                </Button>
 
                 <Menu
                   id="cadastramento"
@@ -222,15 +233,15 @@ class Header extends React.Component {
                       Agendamentos
                     </MenuItem>
                   </Link>
-                  {this.state.isDoctor?
-                  (
-                  <Link className="app-menu__link" to={this.state.url}>
-                    <MenuItem  onClick={this.closeListagem}>
-                      Minhas Consultas
-                    </MenuItem>
-                  </Link>
-                  ):""
-                  }
+                  {this.state.isDoctor ? (
+                    <Link className="app-menu__link" to={this.state.url}>
+                      <MenuItem onClick={this.closeListagem}>
+                        Minhas Consultas
+                      </MenuItem>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </Menu>
               </div>
             ) : (
@@ -299,6 +310,7 @@ class Header extends React.Component {
                   ),
                 }}
               />
+              {this.state.error?"Erro ao logar":""}
             </DialogContent>
             <DialogActions>
               <Button

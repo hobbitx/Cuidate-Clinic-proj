@@ -27,13 +27,15 @@ export default async function add(
   })
     .then((response) => {
       if (response.status === 200) {
-        return response.json();
+        isLogin =  response.json();
       } else {
-        return "error";
+       
+      isLogin =  "error";
       }
     })
     .catch((error) => {
       console.error(error);
+      isLogin =  "error";
     });
   return isLogin;
 }

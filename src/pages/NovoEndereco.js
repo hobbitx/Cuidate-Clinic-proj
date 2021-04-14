@@ -26,7 +26,8 @@ const initialState = {
   bairro: "",
   cidade: "",
   estado: "",
-  error: false
+  success: false,
+  error: false,
 };
 
 class AddAddress extends React.Component {
@@ -37,6 +38,7 @@ class AddAddress extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
   }
   save = async () => {
+    console.log("entrou");
     let response = await saveEndereco(
       this.state.cep,
       this.state.logradouro + " " + this.state.numero,
@@ -44,12 +46,15 @@ class AddAddress extends React.Component {
       this.state.cidade,
       this.state.estado
     );
+    console.log(response);
     if (response != "error") {
-      this.setState(initialState);
+      this.setState({
+        success: true
+      });
     } else {
-        this.setState({
-            error: true
-        })
+      this.setState({
+        error: true,
+      });
     }
   };
   handleDateChange = (event) => {
@@ -62,10 +67,27 @@ class AddAddress extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Snackbar open={this.state.error} autoHideDuration={3000}>
-          <Alert severity="errror">Error ao Salvar</Alert>
-        </Snackbar>
         <div style={style}>
+        <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.error}
+            autoHideDuration={2000}
+          >
+            <Alert severity="error">Error ao Salvar</Alert>
+          </Snackbar>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.success}
+            autoHideDuration={2000}
+          >
+            <Alert severity="success">Salvo com sucesso</Alert>
+          </Snackbar>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               Novo endereço
@@ -166,7 +188,7 @@ class AddAddress extends React.Component {
             <Grid item xs={4}></Grid>
           </Grid>
         </div>
-        
+
         <Footer />
       </React.Fragment>
     );

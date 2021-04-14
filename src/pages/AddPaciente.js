@@ -113,9 +113,16 @@ class AddPaciente extends React.Component {
     return (
       <React.Fragment>
         <div style={style}>
-        <Snackbar open={this.state.error} autoHideDuration={3000}>
-          <Alert severity="errror">Error ao logar</Alert>
-        </Snackbar>
+        <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.error}
+            autoHideDuration={2000}
+          >
+            <Alert severity="error">Error ao Salvar</Alert>
+          </Snackbar>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               Cadastramento de paciente

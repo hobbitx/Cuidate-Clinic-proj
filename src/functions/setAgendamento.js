@@ -1,22 +1,14 @@
 import config from "../config.json";
 
 const url = config.baseURL + "agenda";
-export default async function add(
-  data,
-  hora,
-  nome,
-  email,
-  telefone,
-  idMedico
-) {
+export default async function add(data, hora, nome, email, telefone, idMedico) {
   var body = {
     data: `${data}`,
     horario: `${hora}`,
     nome: `${nome}`,
     email: `${email}`,
     telefone: `${telefone}`,
-    medico_id: `${idMedico}`
-
+    medico_id: `${idMedico}`,
   };
   let isLogin = "";
   let myRequest = new Request(url);
@@ -30,13 +22,13 @@ export default async function add(
   })
     .then((response) => {
       if (response.status === 200) {
-        return response.json();
+        isLogin = response.json();
       } else {
-        return "error";
+        isLogin = "error";
       }
     })
     .catch((error) => {
-      console.error(error);
+      isLogin = "error";
     });
   return isLogin;
 }

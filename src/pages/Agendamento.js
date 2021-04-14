@@ -2,6 +2,8 @@ import * as React from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import MenuItem from "@material-ui/core/MenuItem";
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 import Button from "@material-ui/core/Button";
 import getEspecialidade from "../functions/getEspecialidade";
 import getMedico from "../functions/getMedico";
@@ -29,31 +31,44 @@ class AddSchedule extends React.Component {
       medicos: [],
       pacientes: [],
       horas: [],
+      selectPaciente: "",
       loading: true,
+      data: "",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.agendar = this.agendar.bind(this);
   }
   agendar = async () => {
     console.log(this.state);
-    let paciente = this.state.pacientes.find( p =>{
-        return p.idpaciente == this.state.selectPaciente
-    })
-    let formatedHora = new Date(this.state.data)
-    let month = formatedHora.getMonth()+1
-    let response = await setAgenda(
-      
-        (formatedHora.getFullYear()+"/"+month+"/"+formatedHora.getDate()),
+    let paciente = this.state.pacientes.find((p) => {
+      return p.idpaciente == this.state.selectPaciente;
+    });
+    if (paciente) {
+      let formatedHora = new Date(this.state.data);
+      let month = formatedHora.getMonth() + 1;
+      let response = await setAgenda(
+        formatedHora.getFullYear() + "/" + month + "/" + formatedHora.getDate(),
         this.state.hora,
         paciente.nome,
         paciente.email,
         paciente.telefone,
         this.state.idMedico
-    )
-    this.forceUpdate()
+      );
+      if (response != "error") {
+        this.setState({
+          success: true,
+          error: false,
+        });
+      } else {
+        this.setState({
+          success: false,
+          error: true,
+        });
+      }
+    }
   };
 
-  async componentWillMount() {  
+  async componentWillMount() {
     let especialidade = await getEspecialidade();
     let pacientes = await getPacientes();
     let medico = await getMedico();
@@ -66,6 +81,8 @@ class AddSchedule extends React.Component {
       showHora: false,
       medicos: medico,
       loading: false,
+      success: false,
+      error: false,
       idMedico: "",
     });
   }
@@ -94,8 +111,8 @@ class AddSchedule extends React.Component {
         event.target.value.split("-")[1] +
         "-" +
         event.target.value.split("-")[2];
-      
-        let disponiveis = this.state.horarios.filter((horario) => {
+
+      let disponiveis = this.state.horarios.filter((horario) => {
         return horario.data.split("T")[0] == data;
       });
       let min = 8;
@@ -118,7 +135,7 @@ class AddSchedule extends React.Component {
       }
       this.setState({
         horas: horarios,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
       });
     } else {
       this.setState({
@@ -131,6 +148,26 @@ class AddSchedule extends React.Component {
     return (
       <React.Fragment>
         <div style={style}>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.error}
+            autoHideDuration={2000}
+          >
+            <Alert severity="error">Error ao Salvar</Alert>
+          </Snackbar>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={this.state.success}
+            autoHideDuration={2000}
+          >
+            <Alert severity="success">Salvo com sucesso</Alert>
+          </Snackbar>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               Agendamento
@@ -194,7 +231,6 @@ class AddSchedule extends React.Component {
               <DatePicker
                 disabled={!this.state.showData}
                 onChange={this.handleDateChange}
-                
                 internalId={"data"}
                 label="Data"
               />
