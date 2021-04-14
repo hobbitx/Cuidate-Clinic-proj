@@ -2,7 +2,8 @@ import "date-fns";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-
+const min = 8;
+const max = 17;
 class HourPicker extends React.Component {
   constructor() {
     super();
@@ -20,28 +21,27 @@ class HourPicker extends React.Component {
     };
     this.props.onChange(newEvent);
   }
+  componentWillReceiveProps() {
+    console.log(this.props.horas);
+  }
   render() {
     return (
       <TextField
         id="time"
         label="Horário"
         select
+        fullWidth
+        variant="outlined"
+        onChange={this.onChange}
         type="time"
         defaultValue="--:--"
         InputLabelProps={{
           shrink: true,
         }}
       >
-        <MenuItem value="08:00">08:00</MenuItem>
-        <MenuItem value="09:00">09:00</MenuItem>
-        <MenuItem value="10:00">10:00</MenuItem>
-        <MenuItem value="11:00">11:00</MenuItem>
-        <MenuItem value="12:00">12:00</MenuItem>
-        <MenuItem value="13:00">13:00</MenuItem>
-        <MenuItem value="14:00">14:00</MenuItem>
-        <MenuItem value="15:00">15:00</MenuItem>
-        <MenuItem value="16:00">16:00</MenuItem>
-        <MenuItem value="17:00">17:00</MenuItem>
+        {this.props.horas.map((hora) => {
+          return <MenuItem value={hora}>{hora}</MenuItem>;
+        })}
       </TextField>
     );
   }

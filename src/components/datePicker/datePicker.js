@@ -10,7 +10,6 @@ class DatePicker extends React.Component {
   }
 
   onChange(event) {
-    console.log(event.target.value)
     event.target.name = this.props.internalId;
     let newEvent = {
         target: {
@@ -18,6 +17,8 @@ class DatePicker extends React.Component {
             value: event.target.value
         }
     }
+    
+    console.log(newEvent)
     this.props.onChange(newEvent);
   }
    render() {

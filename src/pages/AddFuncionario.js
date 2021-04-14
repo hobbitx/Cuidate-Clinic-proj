@@ -52,7 +52,8 @@ class AddDoctor extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
-        logradouro: endereco.logradouro,
+        numero: endereco.logradouro.replace(/\D/g, ""),
+        logradouro: endereco.logradouro.replace(/([^\d])+/gim, ''),
       });
     } else {
       this.setState({

@@ -1,19 +1,22 @@
 import config from "../config.json";
 
-const url = config.baseURL + "/Agendamento";
+const url = config.baseURL + "agenda";
 export default async function add(
   data,
-  horario,
+  hora,
   nome,
   email,
-  telefone
+  telefone,
+  idMedico
 ) {
   var body = {
     data: `${data}`,
-    horario: `${horario}`,
+    horario: `${hora}`,
     nome: `${nome}`,
     email: `${email}`,
-    telefone: `${telefone}`
+    telefone: `${telefone}`,
+    medico_id: `${idMedico}`
+
   };
   let isLogin = "";
   let myRequest = new Request(url);

@@ -91,7 +91,7 @@ class AddPaciente extends React.Component {
         cidade: endereco.cidade,
         estado: endereco.estado,
         numero: endereco.logradouro.replace(/\D/g, ""),
-        logradouro: endereco.logradouro,
+        logradouro: endereco.logradouro.replace(/([^\d])+/gim, ''),
       });
     } else {
       this.setState({
