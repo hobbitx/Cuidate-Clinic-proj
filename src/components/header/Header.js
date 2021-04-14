@@ -28,6 +28,7 @@ class Header extends React.Component {
       logged: false,
       cadastramento: false,
       listagem: false,
+      isDoctor: false,
       loginModal: false,
     };
     this.menuCadastramento = this.menuCadastramento.bind(this);
@@ -87,8 +88,10 @@ class Header extends React.Component {
     this.setState({
       name: user[0].nome,
       id: user[0].idpessoa,
+      isDoctor: user[0].idfuncionario[0] == "m"?true:false,
       logged: true,
       loginModal: false,
+      url: "/listMinhaConsulta/"+user[0].idpessoa
     });
   };
   handleDateChange = (event) => {
@@ -158,7 +161,7 @@ class Header extends React.Component {
               </Button>
             </Link>
             {this.state.logged ? (
-              <div>
+              <div style={{'margin-top': '10px'}}>
                 <Link className="app-menu__link" to="/Galeria">
                   <Button
                     aria-controls="simple-menu"
@@ -221,11 +224,15 @@ class Header extends React.Component {
                       Agendamentos
                     </MenuItem>
                   </Link>
-                  <Link className="app-menu__link" to="/listMinhaConsulta">
-                    <MenuItem onClick={this.closeListagem}>
+                  {this.state.isDoctor?
+                  (
+                  <Link className="app-menu__link" to={this.state.url}>
+                    <MenuItem  onClick={this.closeListagem}>
                       Minhas Consultas
                     </MenuItem>
                   </Link>
+                  ):""
+                  }
                 </Menu>
               </div>
             ) : (
