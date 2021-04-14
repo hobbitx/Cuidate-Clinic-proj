@@ -30,30 +30,29 @@ import Onco from "../imagens/onco.png";
 import geriatria from "../imagens/geriatria.png";
 import endocrinologia from "../imagens/endocrinologia.png";
 import pneumo from "../imagens/pneumo.png";
-import CardNoticia from "../components/cardNoticia";
-import Grid from "@material-ui/core/Grid";
-import { Card } from "semantic-ui-react";
-
+import coronacuidado from "../imagens/corona_cuidado.JPG";
+import info from "../imagens/INFORMATIVO.jpg";
+import mascara from "../imagens/mascara.JPG";
+import boletim from "../imagens/boletim.png";
+import Carousel from "react-simply-carousel";
 const style = {
   margin: "1%",
 };
-
-const noticias = [
-  {
-    nome: "Teste",
-    texto: "Aleatoriedade",
-    image: "https://ibcdn.canaltech.com.br/6LpyUmH_q-iP7yyAPqUGzoLneKE=/512x288/smart/i358573.png"
-  },{
-    nome: "Covid",
-    texto: "Fiquem em ksa porra",
-    image: "https://www.gov.br/pt-br/noticias/saude-e-vigilancia-sanitaria/2020/03/entenda-a-diferenca-entre-coronavirus-covid-19-e-novo-coronavirus/mitosis-3876669_1920.jpg/@@images/10852f76-0ff0-436b-8ab0-f9ed27b09f9e.png"
-  }
-]
 
 class Info extends React.Component {
   constructor() {
     super();
   }
+  state = {
+    activeSlideIndex: 0,
+  };
+
+  setActiveSlideIndex = (newActiveSlideIndex) => {
+    this.setState({
+      activeSlideIndex: newActiveSlideIndex,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -64,8 +63,6 @@ class Info extends React.Component {
           </Parallax>
         </div>
 
-        
-
         <div style={{ paddingTop: "50px", paddingBottom: "50px" }} > 
           <Container justify="center" >
             <Row justify="center" >
@@ -75,8 +72,7 @@ class Info extends React.Component {
               <Col sm={4} >
                 <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjoyMiwidyI6MTAwMCwiZnMiOjIyLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/SG9yw6FyaW8gZGUgYXRlbmRpbWVudG8/geliat-extralight.png" style={{ paddingTop: "40px", paddingBottom: "10px" }}/>
                 <header className="Texto-1" border="20px">
-                Segunda - Sexta: 8h às 18h<br></br>
-                Sábado: 8h às 12h
+                Segunda - Domingo: 8h às 17h<br></br>
                 </header>
               </Col>
               <Col sm={1}  className='Box'>
@@ -86,7 +82,7 @@ class Info extends React.Component {
                 <br></br>
                 <img src="https://see.fontimg.com/api/renderfont4/6YLRq/eyJyIjoiZnMiLCJoIjoyMiwidyI6MTAwMCwiZnMiOjIyLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/VGVsZWZvbmVzIGRlIENvbnRhdG8/geliat-extralight.png" style={{ paddingTop: "20px", paddingBottom: "10px" }}/>
                 <header className="Texto-1" border="20px">
-                  (31) 34555555 <br></br> (31)999999999
+                  (31) 34555555 | (31)999999999
                 </header>
               </Col>
             </Row>
@@ -193,10 +189,30 @@ class Info extends React.Component {
             </Row>
           </Container> 
           
-          <br></br>
+          <br></br><br></br><br></br><br></br><br></br>
         </div>
-        
-      <Footer />
+        <div>
+          <Carousel autoplay={true} delay={1000}
+            activeSlideIndex={this.state.activeSlideIndex}
+            onRequestChange={this.setActiveSlideIndex}
+            itemsToShow={1}
+            itemsToScroll={1}
+            paddingTop={20}>
+            <div style={{ width: 1350, height: 500 }}>
+              <img src={coronacuidado} style={{ align:"center", verticalAlign: "center", paddingTop: "100px" }}/>
+            </div>
+            <div style={{ width: 1350, height: 500 }}>
+              <img src={info} style={{ align:"center", verticalAlign: "center", paddingTop: "40px" }} />
+            </div>
+            <div style={{ width: 1350, height: 500 }}>
+              <img src={mascara} style={{ align:"center", verticalAlign: "center", paddingTop: "50px" }} />
+            </div>
+            <div style={{ width: 1350, height: 500 }}>
+              <img src={boletim} style={{ align:"center", verticalAlign: "center", paddingTop: "50px" }} />
+            </div>
+          </Carousel>
+        </div>
+      <Footer /> 
       </div>
       
     );
