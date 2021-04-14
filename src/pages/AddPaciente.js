@@ -43,7 +43,7 @@ class AddPaciente extends React.Component {
 
   save = async () => {
     console.log(this.state);
-    let response = await Paciente.add(
+    let response = await Paciente(
       this.state.nome,
       this.state.email,
       this.state.telefone,

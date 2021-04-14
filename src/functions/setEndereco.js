@@ -26,8 +26,8 @@ export default async function add(
     },
   })
     .then((response) => {
-      if (response.status === 200) {
-        isLogin =  response.json();
+      if (response.status === 201) {
+        isLogin =  "true";
       } else {
        
       isLogin =  "error";

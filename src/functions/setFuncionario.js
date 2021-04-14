@@ -20,7 +20,7 @@ export default async function add(
     email: `${email}`,
     telefone: `${telefone}`,
     cep: `${cep}`,
-    logradouro: `${logradouro + numero}`,
+    logradouro: `${logradouro}`,
     bairro: `${bairro}`,
     estado: `${estado}`,
     cidade: `${cidade}`,
@@ -28,6 +28,8 @@ export default async function add(
     salario: `${salario}`,
     senha: `${senha}`,
   };
+
+  console.log(body);
   let isLogin = "";
   let myRequest = new Request(url);
   await fetch(myRequest, {

@@ -30,7 +30,7 @@ class Header extends React.Component {
       listagem: false,
       isDoctor: false,
       loginModal: false,
-      error: false
+      error: false,
     };
     this.menuCadastramento = this.menuCadastramento.bind(this);
     this.menuListagem = this.menuListagem.bind(this);
@@ -70,9 +70,11 @@ class Header extends React.Component {
       this.setState({
         loginModal: true,
       });
-    }else{
+    } else {
       this.setState({
         logged: false,
+        user: "",
+        senha: "",
       });
     }
   };
@@ -80,6 +82,8 @@ class Header extends React.Component {
     console.log(event);
     this.setState({
       listagem: false,
+      user: "",
+      senha: "",
     });
   };
   home = () => {
@@ -101,8 +105,8 @@ class Header extends React.Component {
       });
     } else {
       this.setState({
-        error: true
-      })
+        error: true,
+      });
     }
   };
   handleDateChange = (event) => {
@@ -310,7 +314,7 @@ class Header extends React.Component {
                   ),
                 }}
               />
-              {this.state.error?"Erro ao logar":""}
+              {this.state.error ? "Erro ao logar" : ""}
             </DialogContent>
             <DialogActions>
               <Button

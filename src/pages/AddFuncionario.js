@@ -50,7 +50,7 @@ class AddDoctor extends React.Component {
     if (endereco != false) {
       console.log(endereco);
       this.setState({
-        [event.target.name]: event.target.value,
+        [event.target.name]: value,
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
@@ -58,24 +58,25 @@ class AddDoctor extends React.Component {
       });
     } else {
       this.setState({
-        [event.target.name]: event.target.value,
+        [event.target.name]: value,
         isEditable: false,
       });
     }
   }
 
   save = async () => {
-    let response = await Funcionario.add(
+    console.log(this.state)
+    let response = await Funcionario(
       this.state.nome,
       this.state.email,
       this.state.telefone,
-      this.state.cep,
+      this.state.cep2,
       this.state.logradouro,
       this.state.numero,
       this.state.bairro,
       this.state.cidade,
       this.state.estado,
-      this.state.datacontrato,
+      this.state.dataContrato,
       this.state.salario,
       this.state.senha
     );
@@ -92,10 +93,9 @@ class AddDoctor extends React.Component {
     }
   };
   handleDateChange = (event) => {
-    let value = event.target.value.replace(".", "");
-    value = value.replace("-", "");
+  
     this.setState({
-      [event.target.name]: value,
+      [event.target.name]: event.target.value,
     });
   };
   checkBox = (event) => {
@@ -137,12 +137,12 @@ class AddDoctor extends React.Component {
               Cadastramento de funcionario
             </Grid>
             <Grid item xs={12} style={{ color: "#505050" }}>
-              <Switch id="isDoctor" onChange={this.checkBox} name="isDoctor" />
+              <Switch name="isDoctor" onChange={this.checkBox} name="isDoctor" />
               Médico
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="nome"
+                name="nome"
                 label="Nome"
                 onChange={this.handleDateChange}
                 placeholder="Ex: Joao da Silva"
@@ -154,7 +154,7 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="email"
+                name="email"
                 label="E-mail"
                 onChange={this.handleDateChange}
                 placeholder="example@gmail.com"
@@ -166,7 +166,7 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="telefone"
+                name="telefone"
                 label="Telefone"
                 onChange={this.handleDateChange}
                 placeholder="xx xxxxx-xxxx"
@@ -218,7 +218,7 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={1}>
               <TextField
-                id="numero"
+                name="numero"
                 label="Nº"
                 onChange={this.handleDateChange}
                 
@@ -290,7 +290,7 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="salario"
+                name="salario"
                 label="Salario"
                 placeholder="5000"
                 onChange={this.handleDateChange}
@@ -302,7 +302,7 @@ class AddDoctor extends React.Component {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                id="senha"
+                name="senha"
                 label="Senha"
                 placeholder="****"
                 onChange={this.handleDateChange}
@@ -335,7 +335,7 @@ class AddDoctor extends React.Component {
               <Grid container spacing={1}>
                 <Grid item xs={4}>
                   <TextField
-                    id="especialidade"
+                    name="especialidade"
                     label="Especialidade"
                     placeholder="Pediatria"
                     onChange={this.handleDateChange}
@@ -347,7 +347,7 @@ class AddDoctor extends React.Component {
                 </Grid>
                 <Grid item xs={4}>
                   <TextField
-                    id="crm"
+                    name="crm"
                     label="CRM"
                     onChange={this.handleDateChange}
                     placeholder="xxxx"

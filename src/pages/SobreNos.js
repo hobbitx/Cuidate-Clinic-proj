@@ -84,7 +84,7 @@ class Info extends React.Component {
                   style={{ paddingTop: "40px", paddingBottom: "10px" }}
                 />
                 <header className="Texto-1" border="20px">
-                  Segunda - Domingo: 8h às 17h<br></br>
+                  Segunda á Segunda: 8h às 17h<br></br>
                 </header>
               </Col>
               <Col sm={1} className="Box">
@@ -348,7 +348,6 @@ class Info extends React.Component {
             updateOnItemClick
             forwardBtnProps={{
               style: {
-                display: "none",
               },
             }}
             backwardBtnProps={{
