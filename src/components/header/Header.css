@@ -27,5 +27,9 @@
   color: #595959;
   font-family: sans-serif;
   margin-right: 1rem;
+  margin-top: 10px;
   text-decoration: none;
+}
+.MuiButtonBase-root .MuiButton-root .MuiButton-text .app-header_text{
+  margin-top: 10px;
 }

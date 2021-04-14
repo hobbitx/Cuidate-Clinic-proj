@@ -6,6 +6,7 @@ import Paciente from "../functions/setPaciente";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Footer from "../components/footer";
+import InputMask from "react-input-mask";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import getCep from "../functions/getEndereco";
@@ -31,7 +32,7 @@ class AddPaciente extends React.Component {
       bairro: "",
       cidade: "",
       estado: "",
-      logradouro:"",
+      logradouro: "",
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.checkBox = this.checkBox.bind(this);
@@ -64,10 +65,11 @@ class AddPaciente extends React.Component {
     }
   };
   handleDateChange = (event) => {
+    let value = event.target.value.replace(".", "");
+    value = value.replace("-", "");
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: value,
     });
-    
   };
   handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -78,8 +80,9 @@ class AddPaciente extends React.Component {
     });
   };
   async checkCep(event) {
-    
-    let endereco = await getCep(event.target.value);
+    let value = event.target.value.replace(".", "");
+    value = value.replace("-", "");
+    let endereco = await getCep(value);
     if (endereco != false) {
       console.log(endereco);
       this.setState({
@@ -87,12 +90,12 @@ class AddPaciente extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
-        logradouro: endereco.logradouro
+        logradouro: endereco.logradouro,
       });
     } else {
       this.setState({
         [event.target.name]: event.target.value,
-        isEditable: false
+        isEditable: false,
       });
     }
   }
@@ -170,17 +173,27 @@ class AddPaciente extends React.Component {
               />
             </Grid>
             <Grid item xs={3}>
-              
-              <TextField
+            <InputMask
+                mask="99.999-999"
+                value={this.state.cep}
+                disabled={false}
                 name="cep"
-                label="CEP"
+                maskChar=" "
                 onChange={this.checkCep}
-                placeholder="xx.xxx-xxx"
-                multiline
-                fullWidth
-                color="secondary"
-                variant="outlined"
-              />
+              >
+                {() => (
+                  <TextField
+                    name="cep2"
+                    label="CEP"
+                    placeholder="xx.xxx-xxx"
+                    multiline
+                    fullWidth
+                    color="secondary"
+                    variant="outlined" 
+                    InputProps={{ inputComponent: InputMask }}
+                  />
+                )}
+              </InputMask>
             </Grid>
             <Grid item xs={8}>
               <TextField
