@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import saveEndereco from "../functions/setEndereco";
+import Footer from "../components/footer";
+
 import "./Add.css";
 const style = {
   margin: "10%",
@@ -164,6 +166,8 @@ class AddAddress extends React.Component {
             <Grid item xs={4}></Grid>
           </Grid>
         </div>
+        
+        <Footer />
       </React.Fragment>
     );
   }

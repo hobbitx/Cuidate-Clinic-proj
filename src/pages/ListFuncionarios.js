@@ -4,6 +4,8 @@ import { Card } from "semantic-ui-react";
 import CardFunc from "../components/cardFunc";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import getFuncionarios from "../functions/getFuncionario";
+import Footer from "../components/footer";
+
 import "./List.css";
 
 const style = {
@@ -49,6 +51,8 @@ class ListFuncionarios extends React.Component {
             </Grid>
           </div>
         )}
+        
+        <Footer />
       </React.Fragment>
     );
   }

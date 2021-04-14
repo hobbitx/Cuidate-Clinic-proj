@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import Gallery from 'react-grid-gallery';
 import logo_text from "../imagens/logo_text.png";
 import "./Galeria.css";
-import Footer from "../components/footer2";
+import Footer from "../components/footer";
 
 
 const IMAGES =

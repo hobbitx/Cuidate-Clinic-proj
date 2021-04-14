@@ -12,6 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import getAgenda from "../functions/getAgenda";
 
+import Footer from "../components/footer";
+
 import "./List.css";
 
 const style = {
@@ -99,6 +101,8 @@ async componentWillMount() {
                 </TableBody>
               </Table>
             </TableContainer>
+            
+        <Footer />
       </React.Fragment>
     );
   }

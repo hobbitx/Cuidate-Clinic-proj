@@ -14,9 +14,11 @@ import InputMask from "react-input-mask";
 import Alert from "@material-ui/lab/Alert";
 import Funcionario from "../functions/setFuncionario";
 import DatePicker from "../components/datePicker";
+
+import Footer from "../components/footer";
 import "./Add.css";
 const style = {
-  margin: "10%",
+  margin: "4%",
 };
 
 class AddDoctor extends React.Component {
@@ -38,7 +40,11 @@ class AddDoctor extends React.Component {
     this.checkCep = this.checkCep.bind(this);
   }
   async checkCep(event) {
-    let endereco = await getCep(event.target.value);
+    let value = event.target.value.replace(".", "");
+    value = value.replace("-", "");
+    console.log(value)
+
+    let endereco = await getCep(value);
     if (endereco != false) {
       console.log(endereco);
       this.setState({
@@ -153,7 +159,7 @@ class AddDoctor extends React.Component {
                 disabled={false}
                 name="cep"
                 maskChar=" "
-                onChange={this.handleDateChange}
+                onChange={this.checkCep}
               >
                 {() => (
                   <TextField
@@ -330,13 +336,15 @@ class AddDoctor extends React.Component {
             )}
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
-              <Button variant="contained" fullWidth color="secondary">
+              <Button onClick={this.save} variant="contained" fullWidth color="secondary">
                 Salvar
               </Button>
             </Grid>
             <Grid item xs={4}></Grid>
           </Grid>
         </div>
+        
+        <Footer />
       </React.Fragment>
     );
   }

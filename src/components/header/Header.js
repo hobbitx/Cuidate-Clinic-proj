@@ -162,7 +162,6 @@ class Header extends React.Component {
             </Link>
             {this.state.logged ? (
               <div style={{'margin-top': '10px'}}>
-                <Link className="app-menu__link" to="/Galeria">
                   <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
@@ -171,7 +170,6 @@ class Header extends React.Component {
                   >
                     Cadastramento
                   </Button>
-                </Link>
 
                 <Menu
                   id="cadastramento"

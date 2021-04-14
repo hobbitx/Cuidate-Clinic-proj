@@ -13,7 +13,7 @@ import getCep from "../functions/getEndereco";
 import "./Add.css";
 
 const style = {
-  margin: "10%",
+  margin: "4%",
 };
 
 const initialState = {
@@ -90,6 +90,7 @@ class AddPaciente extends React.Component {
         bairro: endereco.bairro,
         cidade: endereco.cidade,
         estado: endereco.estado,
+        numero: endereco.logradouro.replace(/\D/g, ""),
         logradouro: endereco.logradouro,
       });
     } else {

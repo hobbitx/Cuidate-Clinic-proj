@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import getAgenda from "../functions/getAgenda";
+import Footer from "../components/footer";
 
 import "./List.css";
 
@@ -103,6 +104,7 @@ class ListAgendamento extends React.Component {
                 </TableContainer>
             </div>
         )}
+        <Footer />
       </React.Fragment>
     );
   }

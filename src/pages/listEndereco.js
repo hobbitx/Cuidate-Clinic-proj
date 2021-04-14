@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import getBaseEndereco from "../functions/getBaseEndereco";
 
+import Footer from "../components/footer";
+
 import "./List.css";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -101,6 +103,8 @@ class ListEndereco extends React.Component {
                 </TableContainer>
             </div>
         )}
+        
+        <Footer />
       </React.Fragment>
     );
   }

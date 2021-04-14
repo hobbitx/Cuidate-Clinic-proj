@@ -5,6 +5,8 @@ import CardFunc from "../components/cardFunc";
 import DoneIcon from "@material-ui/icons/Done";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import getPacientes from "../functions/getPacientes";
+
+import Footer from "../components/footer";
 import "./List.css";
 
 const style = {
@@ -52,6 +54,8 @@ class ListPacientes extends React.Component {
           </Grid>
         </div>
         )}
+        
+        <Footer />
       </React.Fragment>
     );
   }
