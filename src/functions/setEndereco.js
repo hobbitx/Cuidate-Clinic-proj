@@ -1,6 +1,6 @@
 import config from "../config.json";
 
-const url = config.baseURL + "/NovoEndereco";
+const url = config.baseURL + "endereco";
 export default async function add(
   cep,
   logradouro,

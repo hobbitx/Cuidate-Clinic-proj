@@ -12,38 +12,57 @@ import MaterialInput from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
-import Endereco from "../functions/setEndereco";
+import saveEndereco from "../functions/setEndereco";
 import "./Add.css";
 const style = {
   margin: "10%",
+};
+const initialState = {
+  cep: "",
+  logradouro: "",
+  numero: "",
+  bairro: "",
+  cidade: "",
+  estado: "",
+  error: false
 };
 
 class AddAddress extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = initialState;
+    this.save = this.save.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
   save = async () => {
-    let response = await Endereco.add(
+    let response = await saveEndereco(
       this.state.cep,
-      this.state.logradouro,
+      this.state.logradouro + " " + this.state.numero,
       this.state.bairro,
       this.state.cidade,
       this.state.estado
     );
-    this.handleDateChange = this.handleDateChange.bind(this);
+    if (response != "error") {
+      this.setState(initialState);
+    } else {
+        this.setState({
+            error: true
+        })
+    }
   };
   handleDateChange = (event) => {
-      let value = event.target.value.replace(".","")
-      value = value.replace("-","")
+    let value = event.target.value.replace(".", "");
+    value = value.replace("-", "");
     this.setState({
       [event.target.name]: value,
     });
-    console.log(value)
   };
   render() {
     return (
       <React.Fragment>
+        <Snackbar open={this.state.error} autoHideDuration={3000}>
+          <Alert severity="errror">Error ao Salvar</Alert>
+        </Snackbar>
         <div style={style}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
@@ -65,7 +84,7 @@ class AddAddress extends React.Component {
                     multiline
                     fullWidth
                     color="secondary"
-                    variant="outlined" 
+                    variant="outlined"
                     InputProps={{ inputComponent: InputMask }}
                   />
                 )}
